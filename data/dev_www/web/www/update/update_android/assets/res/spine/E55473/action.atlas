@@ -1,0 +1,957 @@
+
+action.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+diceng-10/0000
+  rotate: true
+  xy: 971, 204
+  size: 90, 50
+  orig: 90, 50
+  offset: 0, -150
+  index: -1
+quanp-2/0000
+  rotate: false
+  xy: 0, 762
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0001
+  rotate: false
+  xy: 0, 508
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0002
+  rotate: false
+  xy: 450, 762
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0003
+  rotate: false
+  xy: 0, 254
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0004
+  rotate: false
+  xy: 450, 508
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0005
+  rotate: false
+  xy: 0, 0
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0006
+  rotate: false
+  xy: 450, 254
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0007
+  rotate: false
+  xy: 450, 0
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+shifax_2/0000
+  rotate: true
+  xy: 971, 72
+  size: 51, 9
+  orig: 136, 73
+  offset: 25, 29
+  index: -1
+shifax_2/0001
+  rotate: false
+  xy: 900, 1
+  size: 64, 25
+  orig: 136, 73
+  offset: 18, 16
+  index: -1
+shifax_2/0002
+  rotate: true
+  xy: 971, 125
+  size: 77, 38
+  orig: 136, 73
+  offset: 11, 10
+  index: -1
+shifax_2/0003
+  rotate: true
+  xy: 973, 334
+  size: 113, 42
+  orig: 136, 73
+  offset: 8, 9
+  index: -1
+shifax_2/0004
+  rotate: true
+  xy: 973, 449
+  size: 119, 45
+  orig: 136, 73
+  offset: 6, 8
+  index: -1
+shifax_2/0005
+  rotate: false
+  xy: 900, 968
+  size: 122, 46
+  orig: 136, 73
+  offset: 6, 8
+  index: -1
+shifax_2/0006
+  rotate: true
+  xy: 973, 728
+  size: 126, 48
+  orig: 136, 73
+  offset: 4, 7
+  index: -1
+shifax_2/0007
+  rotate: true
+  xy: 972, 570
+  size: 126, 50
+  orig: 136, 73
+  offset: 4, 6
+  index: -1
+shifax_2/0017
+  rotate: true
+  xy: 900, 162
+  size: 132, 69
+  orig: 136, 73
+  offset: 1, 0
+  index: -1
+shifax_2/0018
+  rotate: true
+  xy: 900, 28
+  size: 132, 69
+  orig: 136, 73
+  offset: 1, 0
+  index: -1
+shifax_2/0047
+  rotate: true
+  xy: 900, 563
+  size: 133, 70
+  orig: 136, 73
+  offset: 2, 0
+  index: -1
+shifax_2/0049
+  rotate: true
+  xy: 900, 833
+  size: 133, 71
+  orig: 136, 73
+  offset: 2, 0
+  index: -1
+shifax_2/0051
+  rotate: true
+  xy: 900, 698
+  size: 133, 71
+  orig: 136, 73
+  offset: 2, 1
+  index: -1
+shifax_2/0053
+  rotate: true
+  xy: 900, 429
+  size: 132, 71
+  orig: 136, 73
+  offset: 2, 1
+  index: -1
+shifax_2/0055
+  rotate: true
+  xy: 900, 296
+  size: 131, 71
+  orig: 136, 73
+  offset: 2, 1
+  index: -1
+shifax_2/0077
+  rotate: true
+  xy: 973, 856
+  size: 110, 49
+  orig: 136, 73
+  offset: 11, 6
+  index: -1
+
+action2.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+quanp-2/0008
+  rotate: false
+  xy: 0, 762
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0009
+  rotate: false
+  xy: 0, 508
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0010
+  rotate: false
+  xy: 450, 762
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0011
+  rotate: false
+  xy: 0, 254
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0012
+  rotate: false
+  xy: 450, 508
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0013
+  rotate: false
+  xy: 0, 0
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0014
+  rotate: false
+  xy: 450, 254
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0015
+  rotate: false
+  xy: 450, 0
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+shifax_2/0008
+  rotate: true
+  xy: 970, 618
+  size: 128, 52
+  orig: 136, 73
+  offset: 3, 6
+  index: -1
+shifax_2/0013
+  rotate: true
+  xy: 900, 78
+  size: 132, 67
+  orig: 136, 73
+  offset: 1, 0
+  index: -1
+shifax_2/0015
+  rotate: true
+  xy: 900, 614
+  size: 132, 68
+  orig: 136, 73
+  offset: 1, 0
+  index: -1
+shifax_2/0016
+  rotate: true
+  xy: 900, 480
+  size: 132, 68
+  orig: 136, 73
+  offset: 1, 0
+  index: -1
+shifax_2/0019
+  rotate: true
+  xy: 900, 346
+  size: 132, 68
+  orig: 136, 73
+  offset: 1, 1
+  index: -1
+shifax_2/0021
+  rotate: true
+  xy: 900, 212
+  size: 132, 68
+  orig: 136, 73
+  offset: 1, 1
+  index: -1
+shifax_2/0043
+  rotate: true
+  xy: 900, 882
+  size: 132, 69
+  orig: 136, 73
+  offset: 3, 0
+  index: -1
+shifax_2/0045
+  rotate: true
+  xy: 900, 748
+  size: 132, 69
+  orig: 136, 73
+  offset: 3, 0
+  index: -1
+shifax_2/0069
+  rotate: false
+  xy: 900, 11
+  size: 121, 65
+  orig: 136, 73
+  offset: 5, 0
+  index: -1
+
+action3.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+quanp-2/0016
+  rotate: false
+  xy: 0, 762
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0017
+  rotate: false
+  xy: 0, 508
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0018
+  rotate: false
+  xy: 450, 762
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0019
+  rotate: false
+  xy: 0, 254
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0020
+  rotate: false
+  xy: 450, 508
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0021
+  rotate: false
+  xy: 0, 0
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0022
+  rotate: false
+  xy: 450, 254
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0023
+  rotate: false
+  xy: 450, 0
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+shifax_2/0009
+  rotate: true
+  xy: 968, 619
+  size: 129, 54
+  orig: 136, 73
+  offset: 3, 5
+  index: -1
+shifax_2/0012
+  rotate: true
+  xy: 900, 616
+  size: 132, 66
+  orig: 136, 73
+  offset: 1, 0
+  index: -1
+shifax_2/0014
+  rotate: true
+  xy: 900, 750
+  size: 132, 67
+  orig: 136, 73
+  offset: 1, 0
+  index: -1
+shifax_2/0023
+  rotate: true
+  xy: 900, 483
+  size: 131, 68
+  orig: 136, 73
+  offset: 1, 2
+  index: -1
+shifax_2/0025
+  rotate: true
+  xy: 900, 350
+  size: 131, 68
+  orig: 136, 73
+  offset: 1, 3
+  index: -1
+shifax_2/0027
+  rotate: true
+  xy: 900, 218
+  size: 130, 68
+  orig: 136, 73
+  offset: 2, 4
+  index: -1
+shifax_2/0041
+  rotate: true
+  xy: 900, 86
+  size: 130, 69
+  orig: 136, 73
+  offset: 4, 0
+  index: -1
+shifax_2/0057
+  rotate: true
+  xy: 900, 884
+  size: 130, 71
+  orig: 136, 73
+  offset: 2, 1
+  index: -1
+shifax_2/0071
+  rotate: false
+  xy: 900, 23
+  size: 116, 61
+  orig: 136, 73
+  offset: 7, 1
+  index: -1
+
+action4.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+quanp-2/0024
+  rotate: false
+  xy: 0, 762
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0025
+  rotate: false
+  xy: 0, 508
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0026
+  rotate: false
+  xy: 450, 762
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0027
+  rotate: false
+  xy: 0, 254
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0028
+  rotate: false
+  xy: 450, 508
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0029
+  rotate: false
+  xy: 0, 0
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0030
+  rotate: false
+  xy: 450, 254
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0031
+  rotate: false
+  xy: 450, 0
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+shifax_2/0010
+  rotate: true
+  xy: 900, 96
+  size: 131, 62
+  orig: 136, 73
+  offset: 1, 1
+  index: -1
+shifax_2/0011
+  rotate: true
+  xy: 900, 229
+  size: 132, 64
+  orig: 136, 73
+  offset: 1, 1
+  index: -1
+shifax_2/0029
+  rotate: true
+  xy: 900, 494
+  size: 129, 68
+  orig: 136, 73
+  offset: 3, 4
+  index: -1
+shifax_2/0031
+  rotate: true
+  xy: 900, 363
+  size: 129, 68
+  orig: 136, 73
+  offset: 3, 4
+  index: -1
+shifax_2/0035
+  rotate: true
+  xy: 900, 886
+  size: 128, 71
+  orig: 136, 73
+  offset: 4, 1
+  index: -1
+shifax_2/0037
+  rotate: true
+  xy: 900, 756
+  size: 128, 71
+  orig: 136, 73
+  offset: 4, 1
+  index: -1
+shifax_2/0039
+  rotate: true
+  xy: 900, 625
+  size: 129, 70
+  orig: 136, 73
+  offset: 4, 1
+  index: -1
+shifax_2/0073
+  rotate: false
+  xy: 900, 34
+  size: 117, 60
+  orig: 136, 73
+  offset: 7, 1
+  index: -1
+
+action5.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+quanp-2/0032
+  rotate: false
+  xy: 0, 762
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0033
+  rotate: false
+  xy: 0, 508
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0034
+  rotate: false
+  xy: 450, 762
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0035
+  rotate: false
+  xy: 0, 254
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0036
+  rotate: false
+  xy: 450, 508
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0037
+  rotate: false
+  xy: 0, 0
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0038
+  rotate: false
+  xy: 450, 254
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0039
+  rotate: false
+  xy: 450, 0
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+shifax_2/0033
+  rotate: true
+  xy: 900, 886
+  size: 128, 69
+  orig: 136, 73
+  offset: 4, 3
+  index: -1
+shifax_2/0059
+  rotate: true
+  xy: 900, 756
+  size: 128, 69
+  orig: 136, 73
+  offset: 3, 1
+  index: -1
+shifax_2/0061
+  rotate: true
+  xy: 900, 627
+  size: 127, 69
+  orig: 136, 73
+  offset: 3, 0
+  index: -1
+shifax_2/0063
+  rotate: true
+  xy: 900, 501
+  size: 124, 67
+  orig: 136, 73
+  offset: 4, 0
+  index: -1
+shifax_2/0065
+  rotate: true
+  xy: 900, 375
+  size: 124, 66
+  orig: 136, 73
+  offset: 4, 0
+  index: -1
+shifax_2/0067
+  rotate: true
+  xy: 900, 249
+  size: 124, 65
+  orig: 136, 73
+  offset: 4, 0
+  index: -1
+shifax_2/0075
+  rotate: true
+  xy: 900, 130
+  size: 117, 59
+  orig: 136, 73
+  offset: 8, 2
+  index: -1
+
+action6.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+quanp-2/0040
+  rotate: false
+  xy: 0, 762
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0041
+  rotate: false
+  xy: 0, 508
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0042
+  rotate: false
+  xy: 450, 762
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0043
+  rotate: false
+  xy: 0, 254
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0044
+  rotate: false
+  xy: 450, 508
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0045
+  rotate: false
+  xy: 0, 0
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0046
+  rotate: false
+  xy: 450, 254
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0047
+  rotate: false
+  xy: 450, 0
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+
+action7.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+quanp-2/0048
+  rotate: false
+  xy: 0, 762
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0049
+  rotate: false
+  xy: 0, 508
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0050
+  rotate: false
+  xy: 450, 762
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0051
+  rotate: false
+  xy: 0, 254
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0053
+  rotate: false
+  xy: 450, 508
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0055
+  rotate: false
+  xy: 0, 0
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0057
+  rotate: false
+  xy: 450, 254
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0059
+  rotate: false
+  xy: 450, 0
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+
+action8.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+quanp-2/0061
+  rotate: false
+  xy: 0, 762
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0063
+  rotate: false
+  xy: 0, 508
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0065
+  rotate: false
+  xy: 450, 762
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0066
+  rotate: false
+  xy: 0, 254
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0067
+  rotate: false
+  xy: 450, 508
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0068
+  rotate: false
+  xy: 0, 0
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0069
+  rotate: false
+  xy: 450, 254
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0070
+  rotate: false
+  xy: 450, 0
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+
+action9.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+quanp-2/0071
+  rotate: false
+  xy: 0, 762
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0072
+  rotate: false
+  xy: 0, 508
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0073
+  rotate: false
+  xy: 450, 762
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0074
+  rotate: false
+  xy: 0, 254
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0076
+  rotate: false
+  xy: 450, 508
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0078
+  rotate: false
+  xy: 0, 0
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0080
+  rotate: false
+  xy: 450, 254
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0082
+  rotate: false
+  xy: 450, 0
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+
+action10.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+quanp-2/0084
+  rotate: false
+  xy: 0, 747
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0086
+  rotate: false
+  xy: 0, 493
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0088
+  rotate: false
+  xy: 450, 747
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+quanp-2/0090
+  rotate: false
+  xy: 450, 504
+  size: 448, 241
+  orig: 448, 252
+  offset: 0, -139
+  index: -1
+quanp-2/0092
+  rotate: false
+  xy: 0, 0
+  size: 448, 237
+  orig: 448, 252
+  offset: 0, -135
+  index: -1
+quanp-2/0094
+  rotate: false
+  xy: 0, 239
+  size: 448, 252
+  orig: 448, 252
+  offset: -50, -150
+  index: -1
+

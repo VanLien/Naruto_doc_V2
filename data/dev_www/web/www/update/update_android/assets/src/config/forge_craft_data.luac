@@ -1,0 +1,186 @@
+--------------------------------------------
+-- ForgeHouse - Craft data
+-- Path:
+-- src/config/forge_craft_data.luac
+--
+-- Mục đích:
+-- 1. Gom toàn bộ text mô tả / thông báo client về 1 chỗ
+-- 2. Gom toàn bộ recipe tab Chế Tạo về 1 chỗ
+-- 3. Gom cả result_pool để vùng 76%% / 20%% / 4%% hiển thị item preview
+--------------------------------------------
+
+Config = Config or {}
+Config.ForgeCraftData = Config.ForgeCraftData or {}
+ForgeCraftData = Config.ForgeCraftData
+local ForgeCraftData = Config.ForgeCraftData
+
+local function buildRecipe(bid, name, lev, need_items, loss, order, tab, result_pool, show_in_forgehouse)
+    return {
+        bid = bid,
+        name = name,
+        lev = lev or 1,
+        need_items = need_items or {},
+        loss = loss or {},
+        order = order or bid,
+        tab = tab,
+        result_pool = result_pool or {},
+        show_in_forgehouse = show_in_forgehouse == nil and 1 or show_in_forgehouse
+    }
+end
+
+local function buildExplainDesc()
+    return TI18N(
+        "<div fontcolor=#fff4d2 fontsize=24 outline=2,#3a1b00>Quy tắc Chế Tạo</div>"
+        .. "\n<div fontcolor=#ffd45c>• </div><div fontcolor=#ffffff>Chọn món trang bị muốn chế tạo ở danh sách bên dưới.</div>"
+        .. "\n<div fontcolor=#ffd45c>• </div><div fontcolor=#ffffff>Chuẩn bị đủ </div><div fontcolor=#7CFF7A>nguyên liệu</div><div fontcolor=#ffffff> và </div><div fontcolor=#7CFF7A>vàng</div><div fontcolor=#ffffff>. Nếu thiếu, số lượng sẽ hiển thị </div><div fontcolor=#ff6b6b>màu đỏ</div><div fontcolor=#ffffff>.</div>"
+        .. "\n<div fontcolor=#ffd45c>• </div><div fontcolor=#ffffff>Nhấn </div><div fontcolor=#ffe48a>Tạo</div><div fontcolor=#ffffff> để tiêu hao nguyên liệu và nhận </div><div fontcolor=#89d8ff>1 trang bị</div><div fontcolor=#ffffff> theo tỉ lệ hiển thị ở 3 ô phía trên.</div>"
+        .. "\n<div fontcolor=#ffd45c>• </div><div fontcolor=#ffffff>Bấm vào từng ô kết quả để xem thông tin trang bị có thể nhận được.</div>"
+        .. "\n<div fontcolor=#ffb95e>Lưu ý:</div><div fontcolor=#ffffff> Sau khi chế tạo thành công, nguyên liệu sẽ bị trừ ngay và trang bị mới được đưa vào túi đồ.</div>"
+    )
+end
+
+ForgeCraftData.TabName = {
+    [1] = TI18N("Vũ khí"),
+    [2] = TI18N("Áo quần"),
+    [3] = TI18N("Mũ"),
+    [4] = TI18N("Giày"),
+}
+
+ForgeCraftData.Const = {
+    explain_desc = buildExplainDesc(),
+    compound_btn_label = TI18N("Tạo"),
+    no_recipe_msg = TI18N("Chưa chọn công thức chế tạo"),
+    lack_material_msg = TI18N("Nguyên liệu không đủ"),
+    success_msg = TI18N("Chế tạo thành công"),
+    empty_tab_msg = TI18N("Chưa có trang bị chế tạo ở tab này"),
+}
+
+ForgeCraftData.Recipe = {
+    [40101] = buildRecipe(
+        40101,
+        TI18N("Thủ Lí Kiếm"),
+        1,
+        {{10090, 1}, {159042, 1}, {10091, 1}},
+        {{1, 2000}},
+        101,
+        1,
+        {
+            {7600, 40101},
+            {2000, 40117},
+            {400, 40118},
+        }
+    ),
+	[40117] = buildRecipe(
+        40117,
+        TI18N("Thủ Lí Kiếm"),
+        1,
+        {{10090, 1}, {159042, 1}, {10091, 1}},
+        {{1, 2000}},
+        101,
+        1,
+        {
+            {7600, 40101},
+            {2000, 40117},
+            {400, 40118},
+        }
+    ),
+    [40201] = buildRecipe(
+        40201,
+        TI18N("Thủ Lí Y"),
+        1,
+        {{10090, 1}, {159042, 1}, {10091, 1}},
+        {{1, 2000}},
+        201,
+        2,
+        {
+            {7600, 40201},
+            {2000, 40217},
+            {400, 40218},
+        }
+    ),
+    [40301] = buildRecipe(
+        40301,
+        TI18N("Thủ Lí Mũ"),
+        1,
+        {{10090, 1}, {159042, 1}, {10091, 1}},
+        {{1, 2000}},
+        301,
+        3,
+        {
+            {7600, 40301},
+            {2000, 40317},
+            {400, 40318},
+        }
+    ),
+    [40401] = buildRecipe(
+        40401,
+        TI18N("Thủ Lí Giày"),
+        1,
+        {{10090, 1}, {159042, 1}, {10091, 1}},
+        {{1, 2000}},
+        401,
+        4,
+        {
+            {7600, 40401},
+            {2000, 40417},
+            {400, 40418},
+        }
+    ),
+}
+
+function ForgeCraftData:getConst(key)
+    return self.Const and self.Const[key]
+end
+
+function ForgeCraftData:getExplainDesc()
+    return self.Const and self.Const.explain_desc or ""
+end
+
+function ForgeCraftData:getTabName(tab_id)
+    return self.TabName and self.TabName[tab_id]
+end
+
+function ForgeCraftData:getRecipe(bid)
+    return self.Recipe and self.Recipe[bid]
+end
+
+function ForgeCraftData:getRecipeList()
+    local list = {}
+    for _, data in pairs(self.Recipe or {}) do
+        table.insert(list, data)
+    end
+    table.sort(list, function(a, b)
+        local order_a = a.order or a.bid or 0
+        local order_b = b.order or b.bid or 0
+        if order_a == order_b then
+            return (a.bid or 0) < (b.bid or 0)
+        end
+        return order_a < order_b
+    end)
+    return list
+end
+
+function ForgeCraftData:getRecipeListByTab(tab)
+    local list = {}
+    for _, data in pairs(self.Recipe or {}) do
+        if data.tab == tab then
+            table.insert(list, data)
+        end
+    end
+    table.sort(list, function(a, b)
+        local order_a = a.order or a.bid or 0
+        local order_b = b.order or b.bid or 0
+        if order_a == order_b then
+            return (a.bid or 0) < (b.bid or 0)
+        end
+        return order_a < order_b
+    end)
+    return list
+end
+
+function ForgeCraftData:getRecipeResultPool(recipe_bid)
+    local recipe = self:getRecipe(recipe_bid)
+    return recipe and recipe.result_pool or {}
+end
+
+return ForgeCraftData

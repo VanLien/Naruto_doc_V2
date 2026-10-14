@@ -1,0 +1,218 @@
+﻿function beginGame()
+	if cc.Director:getInstance():getRunningScene() then
+		cc.Director:getInstance():replaceScene(ViewManager:getInstance():getMainScene())
+	else
+		cc.Director:getInstance():runWithScene(ViewManager:getInstance():getMainScene())
+	end
+
+	LoginController:getInstance():createFillView()
+	LoginController:getInstance():openView(LoginController.type.user_input)
+
+	GAME_INITED = true
+	_is_game_restart = false
+
+	if webFunc_GameStart then
+		webFunc_GameStart()
+	end
+
+	if not MAKELIFEBETTER and IS_REQUIRE_RES_GY == true then
+		if NEW_CDN_RES_GY == true then
+			doCdnResFileDownload()
+		else
+			function OnFileDownloadResult(arg_2_0, arg_2_1)
+				if pcall(function()
+					ALL_DOWNLOAD_RES_FILE = require("allres")
+				end) and ALL_DOWNLOAD_RES_FILE then
+					ResourcesLoadMgr:getInstance():downloadResAll()
+				end
+			end
+
+			cc.FmodexManager:getInstance():downloadOtherFile(string.format("%s/allres.lua?%s", CDN_RES_GY_URL, os.time()), "allres.lua")
+		end
+	end
+end
+
+function doCdnResFileDownload()
+	if SAVE_RES_FILE_LOCAL and pcall(function()
+		ALL_DOWNLOAD_RES_FILE = require("localallres")
+	end) and ALL_DOWNLOAD_RES_FILE and type(ALL_DOWNLOAD_RES_FILE) == "table" and #ALL_DOWNLOAD_RES_FILE > 1 then
+		game_print("@Play Loading File Already,Go Loading.")
+		ResourcesLoadMgr:getInstance():downloadResAll()
+
+		return
+	end
+
+	game_print("@Play Loading Get list.")
+
+	VER_UPDATE_ERR_NUM = 0
+
+	function OnFileDownloadResult(arg_6_0, arg_6_1)
+		local function var_6_0()
+			VER_UPDATE_ERR_NUM = VER_UPDATE_ERR_NUM + 1
+
+			if VER_UPDATE_ERR_NUM < 10 then
+				cc.FmodexManager:getInstance():downloadOtherFile(string.format("%s/allres_file.lua?%s", CDN_RES_GY_URL, os.time()), "allres_file.lua")
+			end
+		end
+
+		xpcall(function()
+			package.loaded.allres_file = nil
+			CDN_ALL_RES_FILE = require("allres_file")
+
+			if CDN_ALL_RES_FILE and CDN_ALL_RES_FILE ~= "" then
+				doCdnResDownload()
+			else
+				var_6_0()
+			end
+		end, var_6_0)
+	end
+
+	cc.FmodexManager:getInstance():downloadOtherFile(string.format("%s/allres_file.lua?%s", CDN_RES_GY_URL, os.time()), "allres_file.lua")
+end
+
+function doCdnResDownload()
+	VER_UPDATE_ERR_NUM = 0
+
+	game_print("@Play Loading Start Loading.")
+
+	function OnFileDownloadResult(arg_10_0, arg_10_1)
+		package.loaded.allres = nil
+
+		local function var_10_0()
+			VER_UPDATE_ERR_NUM = VER_UPDATE_ERR_NUM + 1
+
+			if VER_UPDATE_ERR_NUM < 10 then
+				cc.FmodexManager:getInstance():downloadOtherFile(string.format("%s/%s", CDN_RES_GY_URL, CDN_ALL_RES_FILE), "allres.lua")
+			end
+		end
+
+		xpcall(function()
+			ALL_DOWNLOAD_RES_FILE = require("allres")
+
+			if ALL_DOWNLOAD_RES_FILE and type(ALL_DOWNLOAD_RES_FILE) == "table" and #ALL_DOWNLOAD_RES_FILE > 1 then
+				game_print("@Play Loading Start Work.")
+				ResourcesLoadMgr:getInstance():downloadResAll()
+			else
+				var_10_0()
+			end
+		end, var_10_0)
+	end
+
+	cc.FmodexManager:getInstance():downloadOtherFile(string.format("%s/%s", CDN_RES_GY_URL, CDN_ALL_RES_FILE), "allres.lua")
+end
+
+function OnEnterBackground()
+	__enter_background_ts__ = os.time()
+
+	if BattleController then
+		BattleController:getInstance():csEnterBackGround(true)
+	end
+end
+
+function OnEnterForeground()
+	if BattleController then
+		BattleController:getInstance():csEnterBackGround(false)
+	end
+
+	if __enter_background_ts__ then
+		if math.max(0, os.time() - __enter_background_ts__) > 3600 then
+			sdkRestartGame()
+		end
+
+		__enter_background_ts__ = nil
+	end
+end
+
+function restart(arg_15_0)
+	cc.Director:getInstance():pause()
+	AudioManager:getInstance():DeleteMe()
+	BattleController:getInstance():DeleteMe()
+	LoginController:getInstance():DeleteMe()
+	MainSceneController:getInstance():DeleteMe()
+	MainuiController:getInstance():DeleteMe()
+	RenderMgr:getInstance():stop()
+	GlobalTimeTicket:getInstance():stop()
+	GameNet:getInstance():DeleteMe()
+	ViewManager:getInstance():DeleteMe()
+	GlobalEvent:getInstance():UnBindAll()
+	ResourcesCacheMgr:getInstance():cleanAllTexture()
+
+	for iter_15_0, iter_15_1 in pairs(package.loaded) do
+		package.loaded[iter_15_0] = nil
+	end
+
+	local var_15_0 = _G.base
+
+	for iter_15_2, iter_15_3 in pairs(_G) do
+		if iter_15_2 == "base" or iter_15_2 == "_G" or type(iter_15_3) == "function" or type(iter_15_2) == "string" and string.find(iter_15_2, "print") then
+			-- block empty
+		elseif not var_15_0[iter_15_2] then
+			if type(iter_15_3) == "table" and not iter_15_3.__index then
+				if iter_15_3.is_base or iter_15_2 == "Config" then
+					_G[iter_15_2] = nil
+				else
+					freeConfig(_G, iter_15_2)
+				end
+			else
+				_G[iter_15_2] = nil
+			end
+		end
+	end
+
+	clearSuperClass()
+	collectgarbage("collect")
+
+	_is_game_restart = true
+
+	if type(arg_15_0) == "function" then
+		arg_15_0()
+	end
+
+	if not game_print then
+		function game_print(...)
+			return
+		end
+	end
+
+	local var_15_1, var_15_2 = xpcall(main, __G__TRACKBACK__)
+
+	if not var_15_1 then
+		-- block empty
+	end
+
+	cc.Director:getInstance():resume()
+end
+
+function uploadFile(arg_17_0, arg_17_1, arg_17_2)
+	local var_17_0 = PathTool.getVoicePath(arg_17_0)
+	local var_17_1 = readBinaryFile(var_17_0)
+
+	if type(var_17_1) ~= "string" or string.len(var_17_1) < 1000 then
+		cc.FileUtils:getInstance():removeFile(var_17_0)
+		GlobalEvent:getInstance():Fire(EventId.ON_VOICE_UPLOAD_RESULT, {
+			false,
+			filename,
+			string.len(var_17_1)
+		})
+	else
+		if AUDIO_RECORD_TYPE == 10 then
+			if callSpeexEncode() ~= 0 then
+				return
+			end
+
+			var_17_1 = readBinaryFile(PathTool.getVoicePath(AUDIO_WAV_FILE_ENCODE_OUT))
+		end
+
+		ChatController:getInstance():sender12725(arg_17_1, var_17_1, arg_17_2)
+	end
+end
+
+function freeConfig(arg_18_0, arg_18_1)
+	if type(arg_18_0[arg_18_1]) == "table" then
+		for iter_18_0, iter_18_1 in pairs(arg_18_0[arg_18_1]) do
+			freeConfig(arg_18_0[arg_18_1], iter_18_0)
+		end
+	end
+
+	arg_18_0[arg_18_1] = nil
+end

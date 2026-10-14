@@ -1,0 +1,20 @@
+
+action.png
+size: 231,260
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Effect/Ct01
+  rotate: true
+  xy: 2, 2
+  size: 256, 171
+  orig: 256, 171
+  offset: 0, 0
+  index: -1
+Effect/Ct02
+  rotate: true
+  xy: 175, 51
+  size: 207, 54
+  orig: 256, 64
+  offset: 0, 4
+  index: -1

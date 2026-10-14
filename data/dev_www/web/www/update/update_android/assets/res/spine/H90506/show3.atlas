@@ -1,0 +1,131 @@
+
+show3.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+SHOW/1-2/0_00028
+  rotate: true
+  xy: 598, 2
+  size: 699, 563
+  orig: 1024, 1024
+  offset: 122, 275
+  index: -1
+SHOW/1-2/0_00029
+  rotate: true
+  xy: 1439, 1232
+  size: 748, 562
+  orig: 1024, 1024
+  offset: 106, 274
+  index: -1
+SHOW/1-2/0_00030
+  rotate: false
+  xy: 1286, 668
+  size: 748, 562
+  orig: 1024, 1024
+  offset: 105, 271
+  index: -1
+SHOW/1-2/0_00031
+  rotate: true
+  xy: 2, 603
+  size: 745, 594
+  orig: 1024, 1024
+  offset: 106, 238
+  index: -1
+SHOW/1-2/0_00032
+  rotate: false
+  xy: 2, 1350
+  size: 723, 630
+  orig: 1024, 1024
+  offset: 124, 227
+  index: -1
+SHOW/1-2/0_00033
+  rotate: false
+  xy: 727, 1346
+  size: 710, 634
+  orig: 1024, 1024
+  offset: 135, 240
+  index: -1
+SHOW/1-2/0_00034
+  rotate: false
+  xy: 598, 703
+  size: 686, 641
+  orig: 1024, 1024
+  offset: 151, 237
+  index: -1
+SHOW/1/0_00018
+  rotate: false
+  xy: 1577, 162
+  size: 413, 504
+  orig: 1024, 1024
+  offset: 290, 277
+  index: -1
+SHOW/1/0_00019
+  rotate: true
+  xy: 2, 187
+  size: 414, 512
+  orig: 1024, 1024
+  offset: 291, 275
+  index: -1
+SHOW/1/0_00020
+  rotate: false
+  xy: 1163, 156
+  size: 412, 510
+  orig: 1024, 1024
+  offset: 292, 274
+  index: -1
+
+show32.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+SHOW/1/0_00021
+  rotate: false
+  xy: 1628, 532
+  size: 410, 468
+  orig: 1024, 1024
+  offset: 293, 277
+  index: -1
+SHOW/1/0_00022
+  rotate: false
+  xy: 1220, 525
+  size: 406, 475
+  orig: 1024, 1024
+  offset: 293, 276
+  index: -1
+SHOW/1/0_00023
+  rotate: false
+  xy: 816, 520
+  size: 402, 480
+  orig: 1024, 1024
+  offset: 292, 277
+  index: -1
+SHOW/1/0_00024
+  rotate: false
+  xy: 411, 12
+  size: 389, 486
+  orig: 1024, 1024
+  offset: 291, 276
+  index: -1
+SHOW/1/0_00025
+  rotate: false
+  xy: 414, 511
+  size: 400, 489
+  orig: 1024, 1024
+  offset: 290, 276
+  index: -1
+SHOW/1/0_00026
+  rotate: false
+  xy: 2, 2
+  size: 407, 496
+  orig: 1024, 1024
+  offset: 289, 276
+  index: -1
+SHOW/1/0_00027
+  rotate: false
+  xy: 2, 500
+  size: 410, 500
+  orig: 1024, 1024
+  offset: 289, 275
+  index: -1

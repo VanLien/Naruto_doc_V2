@@ -1,0 +1,139 @@
+
+stand2.png
+size: 439,1042
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+0001
+  rotate: true
+  xy: 1, 282
+  size: 265, 306
+  orig: 640, 640
+  offset: 189, 153
+  index: -1
+0002
+  rotate: true
+  xy: 1, 2
+  size: 279, 304
+  orig: 640, 640
+  offset: 184, 150
+  index: -1
+0003
+  rotate: true
+  xy: 1, 548
+  size: 248, 321
+  orig: 640, 640
+  offset: 197, 151
+  index: -1
+0004
+  rotate: true
+  xy: 1, 797
+  size: 244, 358
+  orig: 640, 640
+  offset: 202, 146
+  index: -1
+1
+  rotate: false
+  xy: 308, 333
+  size: 61, 165
+  orig: 61, 165
+  offset: 0, 0
+  index: -1
+2
+  rotate: false
+  xy: 370, 333
+  size: 61, 165
+  orig: 61, 165
+  offset: 0, 0
+  index: -1
+3
+  rotate: false
+  xy: 308, 167
+  size: 61, 165
+  orig: 61, 165
+  offset: 0, 0
+  index: -1
+4
+  rotate: false
+  xy: 306, 1
+  size: 61, 165
+  orig: 61, 165
+  offset: 0, 0
+  index: -1
+5
+  rotate: false
+  xy: 368, 1
+  size: 61, 165
+  orig: 61, 165
+  offset: 0, 0
+  index: -1
+6
+  rotate: false
+  xy: 370, 167
+  size: 61, 165
+  orig: 61, 165
+  offset: 0, 0
+  index: -1
+sdian (1)
+  rotate: true
+  xy: 323, 687
+  size: 59, 69
+  orig: 90, 90
+  offset: 10, 12
+  index: -1
+sdian (2)
+  rotate: true
+  xy: 323, 561
+  size: 62, 66
+  orig: 90, 90
+  offset: 5, 12
+  index: -1
+sdian (3)
+  rotate: false
+  xy: 360, 980
+  size: 78, 61
+  orig: 90, 90
+  offset: 3, 15
+  index: -1
+sdian (4)
+  rotate: false
+  xy: 360, 921
+  size: 77, 58
+  orig: 90, 90
+  offset: 4, 15
+  index: -1
+sdian (5)
+  rotate: false
+  xy: 360, 747
+  size: 73, 53
+  orig: 90, 90
+  offset: 8, 17
+  index: -1
+sdian (6)
+  rotate: false
+  xy: 360, 861
+  size: 75, 59
+  orig: 90, 90
+  offset: 8, 19
+  index: -1
+sdian (7)
+  rotate: false
+  xy: 360, 801
+  size: 75, 59
+  orig: 90, 90
+  offset: 5, 18
+  index: -1
+sdian (8)
+  rotate: false
+  xy: 323, 499
+  size: 66, 61
+  orig: 90, 90
+  offset: 8, 16
+  index: -1
+sdian (9)
+  rotate: true
+  xy: 323, 624
+  size: 62, 67
+  orig: 90, 90
+  offset: 10, 9
+  index: -1

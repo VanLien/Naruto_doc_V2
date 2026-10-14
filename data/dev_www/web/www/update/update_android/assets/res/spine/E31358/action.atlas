@@ -1,0 +1,174 @@
+
+jinguangzhen.png
+size: 1954,1519
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+3
+  rotate: false
+  xy: 2, 825
+  size: 739, 692
+  orig: 855, 759
+  offset: 58, 39
+  index: -1
+lh_hero_2004_hd00
+  rotate: true
+  xy: 1554, 2
+  size: 79, 61
+  orig: 650, 518
+  offset: 145, 93
+  index: -1
+lh_hero_2004_hd01
+  rotate: false
+  xy: 765, 571
+  size: 447, 335
+  orig: 650, 518
+  offset: 98, 88
+  index: -1
+lh_hero_2004_hd02
+  rotate: true
+  xy: 1617, 23
+  size: 58, 109
+  orig: 650, 518
+  offset: 108, 92
+  index: -1
+lh_hero_2004_hd03
+  rotate: false
+  xy: 1250, 319
+  size: 357, 346
+  orig: 650, 518
+  offset: 122, 95
+  index: -1
+lh_hero_2004_hd04
+  rotate: true
+  xy: 1609, 312
+  size: 353, 289
+  orig: 650, 518
+  offset: 131, 90
+  index: -1
+lh_hero_2004_hd05
+  rotate: false
+  xy: 1063, 18
+  size: 319, 295
+  orig: 650, 518
+  offset: 167, 57
+  index: -1
+zg_0
+  rotate: false
+  xy: 1765, 711
+  size: 187, 77
+  orig: 673, 597
+  offset: 328, 442
+  index: -1
+zg_1
+  rotate: true
+  xy: 488, 28
+  size: 303, 136
+  orig: 673, 597
+  offset: 241, 392
+  index: -1
+zg_10
+  rotate: false
+  xy: 2, 22
+  size: 484, 310
+  orig: 673, 597
+  offset: 100, 84
+  index: -1
+zg_11
+  rotate: false
+  xy: 1242, 667
+  size: 448, 279
+  orig: 673, 597
+  offset: 101, 80
+  index: -1
+zg_12
+  rotate: false
+  xy: 626, 71
+  size: 435, 242
+  orig: 673, 597
+  offset: 108, 74
+  index: -1
+zg_13
+  rotate: true
+  xy: 1737, 790
+  size: 370, 214
+  orig: 673, 597
+  offset: 113, 68
+  index: -1
+zg_14
+  rotate: true
+  xy: 1384, 49
+  size: 268, 168
+  orig: 673, 597
+  offset: 132, 67
+  index: -1
+zg_15
+  rotate: true
+  xy: 1692, 667
+  size: 121, 71
+  orig: 673, 597
+  offset: 259, 74
+  index: -1
+zg_2
+  rotate: true
+  xy: 1755, 1162
+  size: 355, 178
+  orig: 673, 597
+  offset: 201, 350
+  index: -1
+zg_3
+  rotate: false
+  xy: 1554, 83
+  size: 390, 227
+  orig: 673, 597
+  offset: 170, 302
+  index: -1
+zg_4
+  rotate: false
+  xy: 765, 315
+  size: 483, 254
+  orig: 673, 597
+  offset: 78, 271
+  index: -1
+zg_5
+  rotate: false
+  xy: 1242, 948
+  size: 493, 286
+  orig: 673, 597
+  offset: 76, 235
+  index: -1
+zg_6
+  rotate: true
+  xy: 493, 333
+  size: 490, 270
+  orig: 673, 597
+  offset: 78, 234
+  index: -1
+zg_7
+  rotate: false
+  xy: 1238, 1236
+  size: 515, 281
+  orig: 673, 597
+  offset: 80, 201
+  index: -1
+zg_8
+  rotate: false
+  xy: 743, 908
+  size: 497, 299
+  orig: 673, 597
+  offset: 104, 156
+  index: -1
+zg_9
+  rotate: false
+  xy: 743, 1209
+  size: 493, 308
+  orig: 673, 597
+  offset: 102, 118
+  index: -1
+金光阵
+  rotate: false
+  xy: 2, 334
+  size: 489, 489
+  orig: 489, 489
+  offset: 0, 0
+  index: -1

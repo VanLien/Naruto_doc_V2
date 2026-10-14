@@ -1,0 +1,20 @@
+
+action.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+action2/guang_00049
+  rotate: false
+  xy: 2, 108
+  size: 304, 298
+  orig: 480, 540
+  offset: 89, 115
+  index: -1
+action2/yl_00049
+  rotate: false
+  xy: 2, 2
+  size: 106, 104
+  orig: 480, 540
+  offset: 186, 218
+  index: -1

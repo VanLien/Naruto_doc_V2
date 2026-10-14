@@ -1,0 +1,151 @@
+
+action.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+baodian/0000
+  rotate: true
+  xy: 390, 374
+  size: 319, 318
+  orig: 393, 356
+  offset: 43, 15
+  index: -1
+baodian/0006
+  rotate: false
+  xy: 0, 697
+  size: 393, 319
+  orig: 393, 356
+  offset: 0, 8
+  index: -1
+baodian/0007
+  rotate: false
+  xy: 0, 374
+  size: 388, 321
+  orig: 393, 356
+  offset: 5, 6
+  index: -1
+baodian/0008
+  rotate: false
+  xy: 395, 695
+  size: 392, 321
+  orig: 393, 356
+  offset: 1, 6
+  index: -1
+baodian/0009
+  rotate: true
+  xy: 0, 0
+  size: 372, 322
+  orig: 393, 356
+  offset: 21, 5
+  index: -1
+baodian/0010
+  rotate: true
+  xy: 324, 8
+  size: 364, 321
+  orig: 393, 356
+  offset: 28, 3
+  index: -1
+baodian/0015
+  rotate: true
+  xy: 710, 89
+  size: 318, 296
+  orig: 393, 356
+  offset: 64, 25
+  index: -1
+baodian/0016
+  rotate: false
+  xy: 710, 409
+  size: 303, 284
+  orig: 393, 356
+  offset: 70, 31
+  index: -1
+baodian/0017
+  rotate: false
+  xy: 789, 896
+  size: 127, 120
+  orig: 393, 356
+  offset: 208, 131
+  index: -1
+baodian/0018
+  rotate: true
+  xy: 789, 769
+  size: 125, 118
+  orig: 393, 356
+  offset: 210, 131
+  index: -1
+
+action2.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+baodian/0001
+  rotate: true
+  xy: 0, 0
+  size: 337, 349
+  orig: 393, 356
+  offset: 39, 5
+  index: -1
+baodian/0002
+  rotate: false
+  xy: 0, 339
+  size: 380, 346
+  orig: 393, 356
+  offset: 0, 9
+  index: -1
+baodian/0004
+  rotate: false
+  xy: 388, 685
+  size: 382, 329
+  orig: 393, 356
+  offset: 8, 9
+  index: -1
+baodian/0005
+  rotate: false
+  xy: 0, 687
+  size: 386, 327
+  orig: 393, 356
+  offset: 7, 8
+  index: -1
+baodian/0011
+  rotate: false
+  xy: 679, 30
+  size: 329, 323
+  orig: 393, 356
+  offset: 61, 1
+  index: -1
+baodian/0012
+  rotate: true
+  xy: 679, 355
+  size: 328, 331
+  orig: 393, 356
+  offset: 61, 0
+  index: -1
+baodian/0013
+  rotate: false
+  xy: 351, 0
+  size: 326, 337
+  orig: 393, 356
+  offset: 61, 0
+  index: -1
+
+action3.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+baodian/0003
+  rotate: false
+  xy: 0, 0
+  size: 380, 330
+  orig: 393, 356
+  offset: 0, 6
+  index: -1
+baodian/0014
+  rotate: false
+  xy: 382, 8
+  size: 322, 322
+  orig: 393, 356
+  offset: 63, 0
+  index: -1

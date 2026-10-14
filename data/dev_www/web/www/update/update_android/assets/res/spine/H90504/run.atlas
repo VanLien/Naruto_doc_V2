@@ -1,0 +1,153 @@
+
+run.png
+size: 524,1046
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+run/0001
+  rotate: true
+  xy: 1, 286
+  size: 265, 306
+  orig: 640, 640
+  offset: 189, 153
+  index: -1
+run/0002
+  rotate: true
+  xy: 1, 6
+  size: 279, 304
+  orig: 640, 640
+  offset: 184, 150
+  index: -1
+run/0003
+  rotate: true
+  xy: 1, 552
+  size: 248, 321
+  orig: 640, 640
+  offset: 197, 151
+  index: -1
+run/0004
+  rotate: true
+  xy: 1, 801
+  size: 244, 358
+  orig: 640, 640
+  offset: 202, 146
+  index: -1
+run/1
+  rotate: true
+  xy: 323, 649
+  size: 130, 137
+  orig: 139, 137
+  offset: 9, 0
+  index: -1
+run/2
+  rotate: true
+  xy: 308, 258
+  size: 128, 132
+  orig: 139, 137
+  offset: 11, 0
+  index: -1
+run/3
+  rotate: true
+  xy: 308, 387
+  size: 129, 135
+  orig: 139, 137
+  offset: 10, 0
+  index: -1
+run/4
+  rotate: false
+  xy: 360, 780
+  size: 139, 130
+  orig: 139, 137
+  offset: 0, 7
+  index: -1
+run/5
+  rotate: true
+  xy: 323, 517
+  size: 131, 136
+  orig: 139, 137
+  offset: 8, 1
+  index: -1
+run/6
+  rotate: false
+  xy: 306, 1
+  size: 127, 128
+  orig: 139, 137
+  offset: 12, 2
+  index: -1
+run/7
+  rotate: true
+  xy: 306, 130
+  size: 127, 132
+  orig: 139, 137
+  offset: 12, 3
+  index: -1
+run/8
+  rotate: false
+  xy: 360, 911
+  size: 139, 134
+  orig: 139, 137
+  offset: 0, 3
+  index: -1
+run/sdian (1)
+  rotate: true
+  xy: 441, 206
+  size: 59, 69
+  orig: 90, 90
+  offset: 10, 12
+  index: -1
+run/sdian (2)
+  rotate: false
+  xy: 461, 645
+  size: 62, 66
+  orig: 90, 90
+  offset: 5, 12
+  index: -1
+run/sdian (3)
+  rotate: true
+  xy: 460, 566
+  size: 78, 61
+  orig: 90, 90
+  offset: 3, 15
+  index: -1
+run/sdian (4)
+  rotate: false
+  xy: 444, 440
+  size: 77, 58
+  orig: 90, 90
+  offset: 4, 15
+  index: -1
+run/sdian (5)
+  rotate: false
+  xy: 441, 266
+  size: 73, 53
+  orig: 90, 90
+  offset: 8, 17
+  index: -1
+run/sdian (6)
+  rotate: false
+  xy: 444, 380
+  size: 75, 59
+  orig: 90, 90
+  offset: 8, 19
+  index: -1
+run/sdian (7)
+  rotate: false
+  xy: 441, 320
+  size: 75, 59
+  orig: 90, 90
+  offset: 5, 18
+  index: -1
+run/sdian (8)
+  rotate: true
+  xy: 460, 499
+  size: 66, 61
+  orig: 90, 90
+  offset: 8, 16
+  index: -1
+run/sdian (9)
+  rotate: false
+  xy: 461, 712
+  size: 62, 67
+  orig: 90, 90
+  offset: 10, 9
+  index: -1

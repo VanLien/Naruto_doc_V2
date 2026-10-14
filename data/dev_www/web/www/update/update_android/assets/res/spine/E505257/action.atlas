@@ -1,0 +1,229 @@
+
+action.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+action2_texiao2/action2_texiao2_00000
+  rotate: true
+  xy: 1777, 19
+  size: 112, 122
+  orig: 485, 572
+  offset: 132, 223
+  index: -1
+action2_texiao2/action2_texiao2_00002
+  rotate: true
+  xy: 191, 31
+  size: 167, 186
+  orig: 485, 572
+  offset: 109, 194
+  index: -1
+action2_texiao2/action2_texiao2_00004
+  rotate: false
+  xy: 2, 13
+  size: 187, 185
+  orig: 485, 572
+  offset: 102, 191
+  index: -1
+action2_texiao2/action2_texiao2_00006
+  rotate: false
+  xy: 944, 57
+  size: 216, 234
+  orig: 485, 572
+  offset: 98, 181
+  index: -1
+action2_texiao2/action2_texiao2_00008
+  rotate: false
+  xy: 1777, 133
+  size: 255, 286
+  orig: 485, 572
+  offset: 103, 174
+  index: -1
+action2_texiao2/action2_texiao2_00014
+  rotate: true
+  xy: 1292, 17
+  size: 402, 483
+  orig: 485, 572
+  offset: 52, 65
+  index: -1
+action2_texiao32/action2_texiao32_00064
+  rotate: false
+  xy: 1951, 1972
+  size: 64, 69
+  orig: 672, 625
+  offset: 298, 269
+  index: -1
+action2_texiao32/action2_texiao32_00066
+  rotate: true
+  xy: 640, 2
+  size: 289, 302
+  orig: 672, 625
+  offset: 184, 162
+  index: -1
+action2_texiao32/action2_texiao32_00068
+  rotate: false
+  xy: 1305, 421
+  size: 585, 538
+  orig: 672, 625
+  offset: 44, 37
+  index: -1
+action2_texiao32/action2_texiao32_00070
+  rotate: false
+  xy: 2, 1420
+  size: 672, 621
+  orig: 672, 625
+  offset: 0, 4
+  index: -1
+action2_texiao32/action2_texiao32_00072
+  rotate: false
+  xy: 2, 801
+  size: 667, 617
+  orig: 672, 625
+  offset: 4, 0
+  index: -1
+action2_texiao32/action2_texiao32_00074
+  rotate: false
+  xy: 676, 1442
+  size: 639, 599
+  orig: 672, 625
+  offset: 17, 4
+  index: -1
+action2_texiao32/action2_texiao32_00076
+  rotate: false
+  xy: 2, 200
+  size: 636, 599
+  orig: 672, 625
+  offset: 19, 4
+  index: -1
+action2_texiao32/action2_texiao32_00078
+  rotate: false
+  xy: 1317, 1447
+  size: 632, 594
+  orig: 672, 625
+  offset: 21, 6
+  index: -1
+action2_texiao32/action2_texiao32_00080
+  rotate: false
+  xy: 676, 857
+  size: 627, 583
+  orig: 672, 625
+  offset: 24, 11
+  index: -1
+action2_texiao32/action2_texiao32_00082
+  rotate: false
+  xy: 671, 293
+  size: 619, 562
+  orig: 672, 625
+  offset: 28, 21
+  index: -1
+action2_texiao32/action2_texiao32_00084
+  rotate: false
+  xy: 1317, 961
+  size: 602, 484
+  orig: 672, 625
+  offset: 35, 45
+  index: -1
+
+action2.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+action2_texiao2/action2_texiao2_00010
+  rotate: false
+  xy: 1717, 383
+  size: 313, 377
+  orig: 485, 572
+  offset: 96, 129
+  index: -1
+action2_texiao2/action2_texiao2_00012
+  rotate: true
+  xy: 2, 2
+  size: 363, 424
+  orig: 485, 572
+  offset: 69, 97
+  index: -1
+action2_texiao2/action2_texiao2_00016
+  rotate: false
+  xy: 467, 899
+  size: 426, 527
+  orig: 485, 572
+  offset: 49, 39
+  index: -1
+action2_texiao2/action2_texiao2_00018
+  rotate: true
+  xy: 1374, 1114
+  size: 444, 534
+  orig: 485, 572
+  offset: 31, 37
+  index: -1
+action2_texiao2/action2_texiao2_00020
+  rotate: false
+  xy: 2, 367
+  size: 459, 526
+  orig: 485, 572
+  offset: 22, 31
+  index: -1
+action2_texiao2/action2_texiao2_00022
+  rotate: false
+  xy: 895, 919
+  size: 457, 525
+  orig: 485, 572
+  offset: 14, 30
+  index: -1
+action2_texiao2/action2_texiao2_00024
+  rotate: false
+  xy: 476, 1446
+  size: 445, 545
+  orig: 485, 572
+  offset: 29, 20
+  index: -1
+action2_texiao2/action2_texiao2_00026
+  rotate: false
+  xy: 2, 1428
+  size: 472, 563
+  orig: 485, 572
+  offset: 0, 0
+  index: -1
+action2_texiao2/action2_texiao2_00028
+  rotate: false
+  xy: 2, 895
+  size: 463, 531
+  orig: 485, 572
+  offset: 9, 24
+  index: -1
+action2_texiao2/action2_texiao2_00030
+  rotate: false
+  xy: 923, 1456
+  size: 449, 535
+  orig: 485, 572
+  offset: 17, 22
+  index: -1
+action2_texiao32/action2_texiao32_00086
+  rotate: false
+  xy: 1374, 1560
+  size: 552, 431
+  orig: 672, 625
+  offset: 62, 73
+  index: -1
+action2_texiao32/action2_texiao32_00088
+  rotate: false
+  xy: 1354, 762
+  size: 413, 350
+  orig: 672, 625
+  offset: 127, 156
+  index: -1
+action2_texiao32/action2_texiao32_00090
+  rotate: false
+  xy: 895, 565
+  size: 411, 352
+  orig: 672, 625
+  offset: 129, 156
+  index: -1
+action2_texiao32/action2_texiao32_00092
+  rotate: false
+  xy: 1308, 409
+  size: 407, 351
+  orig: 672, 625
+  offset: 132, 157
+  index: -1

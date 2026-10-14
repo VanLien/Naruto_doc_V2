@@ -1,0 +1,132 @@
+
+hurt.png
+size: 865,547
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+0001
+  rotate: true
+  xy: 495, 281
+  size: 265, 306
+  orig: 640, 640
+  offset: 189, 153
+  index: -1
+0002
+  rotate: true
+  xy: 495, 1
+  size: 279, 304
+  orig: 640, 640
+  offset: 184, 150
+  index: -1
+0003
+  rotate: false
+  xy: 246, 225
+  size: 248, 321
+  orig: 640, 640
+  offset: 197, 151
+  index: -1
+0004
+  rotate: false
+  xy: 1, 188
+  size: 244, 358
+  orig: 640, 640
+  offset: 202, 146
+  index: -1
+1
+  rotate: true
+  xy: 283, 15
+  size: 99, 147
+  orig: 111, 170
+  offset: 10, 0
+  index: -1
+2
+  rotate: true
+  xy: 283, 115
+  size: 109, 149
+  orig: 111, 170
+  offset: 0, 0
+  index: -1
+3
+  rotate: false
+  xy: 179, 30
+  size: 103, 157
+  orig: 111, 170
+  offset: 6, 0
+  index: -1
+4
+  rotate: false
+  xy: 1, 20
+  size: 100, 167
+  orig: 111, 170
+  offset: 9, 0
+  index: -1
+5
+  rotate: false
+  xy: 102, 21
+  size: 76, 166
+  orig: 111, 170
+  offset: 35, 4
+  index: -1
+sdian (1)
+  rotate: false
+  xy: 800, 44
+  size: 59, 69
+  orig: 90, 90
+  offset: 10, 12
+  index: -1
+sdian (2)
+  rotate: false
+  xy: 802, 412
+  size: 62, 66
+  orig: 90, 90
+  offset: 5, 12
+  index: -1
+sdian (3)
+  rotate: true
+  xy: 802, 333
+  size: 78, 61
+  orig: 90, 90
+  offset: 3, 15
+  index: -1
+sdian (4)
+  rotate: true
+  xy: 433, 147
+  size: 77, 58
+  orig: 90, 90
+  offset: 4, 15
+  index: -1
+sdian (5)
+  rotate: true
+  xy: 433, 73
+  size: 73, 53
+  orig: 90, 90
+  offset: 8, 17
+  index: -1
+sdian (6)
+  rotate: true
+  xy: 800, 190
+  size: 75, 59
+  orig: 90, 90
+  offset: 8, 19
+  index: -1
+sdian (7)
+  rotate: true
+  xy: 800, 114
+  size: 75, 59
+  orig: 90, 90
+  offset: 5, 18
+  index: -1
+sdian (8)
+  rotate: true
+  xy: 802, 266
+  size: 66, 61
+  orig: 90, 90
+  offset: 8, 16
+  index: -1
+sdian (9)
+  rotate: false
+  xy: 802, 479
+  size: 62, 67
+  orig: 90, 90
+  offset: 10, 9
+  index: -1

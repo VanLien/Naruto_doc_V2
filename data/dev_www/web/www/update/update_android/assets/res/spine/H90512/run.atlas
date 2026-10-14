@@ -1,0 +1,104 @@
+
+run.png
+size: 2048,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+run/quan_00000
+  rotate: true
+  xy: 1380, 131
+  size: 196, 169
+  orig: 400, 300
+  offset: 63, 79
+  index: -1
+run/quan_00003
+  rotate: true
+  xy: 452, 38
+  size: 282, 146
+  orig: 400, 300
+  offset: 27, 70
+  index: -1
+run/quan_00006
+  rotate: false
+  xy: 1755, 346
+  size: 288, 164
+  orig: 400, 300
+  offset: 27, 69
+  index: -1
+run/quan_00009
+  rotate: false
+  xy: 600, 164
+  size: 288, 151
+  orig: 400, 300
+  offset: 27, 67
+  index: -1
+run/quan_00012
+  rotate: false
+  xy: 311, 322
+  size: 288, 188
+  orig: 400, 300
+  offset: 27, 43
+  index: -1
+run/quan_00015
+  rotate: false
+  xy: 1175, 329
+  size: 288, 181
+  orig: 400, 300
+  offset: 27, 46
+  index: -1
+run/quan_00018
+  rotate: false
+  xy: 601, 317
+  size: 287, 193
+  orig: 400, 300
+  offset: 28, 49
+  index: -1
+run/quan_00021
+  rotate: false
+  xy: 890, 302
+  size: 283, 208
+  orig: 400, 300
+  offset: 38, 49
+  index: -1
+run/quan_00024
+  rotate: false
+  xy: 2, 325
+  size: 307, 185
+  orig: 400, 300
+  offset: 38, 51
+  index: -1
+run/quan_00027
+  rotate: false
+  xy: 173, 141
+  size: 277, 179
+  orig: 400, 300
+  offset: 38, 72
+  index: -1
+run/quan_00030
+  rotate: false
+  xy: 1465, 340
+  size: 288, 170
+  orig: 400, 300
+  offset: 38, 75
+  index: -1
+run/quan_00033
+  rotate: true
+  xy: 2, 2
+  size: 321, 169
+  orig: 400, 300
+  offset: 38, 64
+  index: -1
+run/quan_00036
+  rotate: false
+  xy: 890, 142
+  size: 283, 158
+  orig: 400, 300
+  offset: 56, 64
+  index: -1
+run/quan_00039
+  rotate: false
+  xy: 1175, 149
+  size: 203, 178
+  orig: 400, 300
+  offset: 56, 70
+  index: -1

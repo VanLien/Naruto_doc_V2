@@ -1,0 +1,34 @@
+
+run.png
+size: 548,138
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: true
+  xy: 139, 6
+  size: 130, 138
+  orig: 495, 440
+  offset: 44, 39
+  index: -1
+2
+  rotate: false
+  xy: 2, 2
+  size: 135, 134
+  orig: 495, 440
+  offset: 44, 39
+  index: -1
+3
+  rotate: false
+  xy: 279, 4
+  size: 135, 132
+  orig: 495, 440
+  offset: 45, 40
+  index: -1
+4
+  rotate: true
+  xy: 416, 3
+  size: 133, 130
+  orig: 495, 440
+  offset: 39, 48
+  index: -1

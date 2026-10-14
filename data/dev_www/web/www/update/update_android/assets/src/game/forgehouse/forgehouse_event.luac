@@ -1,0 +1,9 @@
+ForgeHouseEvent = ForgeHouseEvent or {}
+
+ForgeHouseEvent.Composite_Result = "ForgeHouseEvent.Composite_Result"
+
+ForgeHouseEvent.Composite_Record = "ForgeHouseEvent.Composite_Record"
+
+ForgeHouseEvent.Craft_Material_Chose = "ForgeHouseEvent.Craft_Material_Chose"
+
+ForgeHouseEvent.Craft_Result = "ForgeHouseEvent.Craft_Result"

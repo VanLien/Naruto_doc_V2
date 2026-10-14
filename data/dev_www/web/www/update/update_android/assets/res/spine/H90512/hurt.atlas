@@ -1,0 +1,188 @@
+
+hurt.png
+size: 2048,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hurt/tx/qian_00000
+  rotate: true
+  xy: 1075, 30
+  size: 90, 181
+  orig: 200, 200
+  offset: 54, 8
+  index: -1
+hurt/tx/qian_00001
+  rotate: false
+  xy: 1890, 122
+  size: 101, 183
+  orig: 200, 200
+  offset: 49, 7
+  index: -1
+hurt/tx/qian_00002
+  rotate: true
+  xy: 1599, 225
+  size: 102, 185
+  orig: 200, 200
+  offset: 49, 6
+  index: -1
+hurt/tx/qian_00003
+  rotate: false
+  xy: 1786, 142
+  size: 102, 185
+  orig: 200, 200
+  offset: 49, 6
+  index: -1
+hurt/tx/qian_00004
+  rotate: false
+  xy: 1890, 307
+  size: 104, 187
+  orig: 200, 200
+  offset: 48, 6
+  index: -1
+hurt/tx/qian_00005
+  rotate: true
+  xy: 413, 44
+  size: 104, 188
+  orig: 200, 200
+  offset: 48, 6
+  index: -1
+hurt/tx/qian_00006
+  rotate: true
+  xy: 1114, 228
+  size: 104, 188
+  orig: 200, 200
+  offset: 48, 6
+  index: -1
+hurt/tx/qian_00007
+  rotate: true
+  xy: 1114, 122
+  size: 104, 188
+  orig: 200, 200
+  offset: 48, 6
+  index: -1
+hurt/tx/qian_00008
+  rotate: false
+  xy: 1304, 144
+  size: 104, 188
+  orig: 200, 200
+  offset: 48, 6
+  index: -1
+hurt/tx/qian_00009
+  rotate: true
+  xy: 1410, 224
+  size: 104, 187
+  orig: 200, 200
+  offset: 48, 6
+  index: -1
+hurt/tx/qian_00010
+  rotate: true
+  xy: 1410, 118
+  size: 104, 186
+  orig: 200, 200
+  offset: 48, 6
+  index: -1
+hurt/tx/qian_00011
+  rotate: true
+  xy: 1599, 121
+  size: 102, 185
+  orig: 200, 200
+  offset: 49, 6
+  index: -1
+hurt/tx/qian_00012
+  rotate: true
+  xy: 890, 64
+  size: 101, 183
+  orig: 200, 200
+  offset: 49, 7
+  index: -1
+stand/skeleton-animation_0
+  rotate: true
+  xy: 663, 337
+  size: 157, 253
+  orig: 961, 480
+  offset: 209, 122
+  index: -1
+stand/skeleton-animation_1
+  rotate: true
+  xy: 1171, 334
+  size: 160, 238
+  orig: 961, 480
+  offset: 206, 122
+  index: -1
+stand/skeleton-animation_10
+  rotate: false
+  xy: 2, 2
+  size: 212, 247
+  orig: 961, 480
+  offset: 173, 122
+  index: -1
+stand/skeleton-animation_11
+  rotate: true
+  xy: 413, 324
+  size: 170, 248
+  orig: 961, 480
+  offset: 208, 122
+  index: -1
+stand/skeleton-animation_12
+  rotate: true
+  xy: 918, 336
+  size: 158, 251
+  orig: 961, 480
+  offset: 211, 122
+  index: -1
+stand/skeleton-animation_2
+  rotate: true
+  xy: 1411, 330
+  size: 164, 238
+  orig: 961, 480
+  offset: 203, 122
+  index: -1
+stand/skeleton-animation_3
+  rotate: true
+  xy: 1651, 329
+  size: 165, 237
+  orig: 961, 480
+  offset: 202, 122
+  index: -1
+stand/skeleton-animation_4
+  rotate: true
+  xy: 890, 167
+  size: 167, 222
+  orig: 961, 480
+  offset: 201, 122
+  index: -1
+stand/skeleton-animation_5
+  rotate: true
+  xy: 413, 150
+  size: 172, 225
+  orig: 961, 480
+  offset: 196, 122
+  index: -1
+stand/skeleton-animation_6
+  rotate: true
+  xy: 663, 151
+  size: 184, 225
+  orig: 961, 480
+  offset: 184, 122
+  index: -1
+stand/skeleton-animation_7
+  rotate: false
+  xy: 223, 34
+  size: 188, 225
+  orig: 961, 480
+  offset: 180, 122
+  index: -1
+stand/skeleton-animation_8
+  rotate: false
+  xy: 223, 261
+  size: 188, 233
+  orig: 961, 480
+  offset: 179, 122
+  index: -1
+stand/skeleton-animation_9
+  rotate: false
+  xy: 2, 251
+  size: 219, 243
+  orig: 961, 480
+  offset: 173, 122
+  index: -1

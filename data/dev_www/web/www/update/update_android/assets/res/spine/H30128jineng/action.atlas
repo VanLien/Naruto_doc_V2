@@ -1,0 +1,174 @@
+
+action.png
+size: 440,1049
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Effect/Ct03
+  rotate: true
+  xy: 260, 872
+  size: 175, 176
+  orig: 256, 256
+  offset: 40, 40
+  index: -1
+Effect/Ct04
+  rotate: false
+  xy: 2, 77
+  size: 120, 120
+  orig: 128, 128
+  offset: 4, 4
+  index: -1
+Effect/Ct05
+  rotate: true
+  xy: 2, 548
+  size: 249, 253
+  orig: 256, 256
+  offset: 3, 2
+  index: -1
+Effect/Ct06
+  rotate: false
+  xy: 2, 799
+  size: 256, 248
+  orig: 256, 256
+  offset: 0, 4
+  index: -1
+Effect/Ct07
+  rotate: true
+  xy: 2, 325
+  size: 221, 250
+  orig: 256, 256
+  offset: 18, 0
+  index: -1
+Effect/Ct08
+  rotate: false
+  xy: 386, 749
+  size: 50, 121
+  orig: 64, 128
+  offset: 14, 7
+  index: -1
+Effect/Ct09
+  rotate: false
+  xy: 386, 626
+  size: 50, 121
+  orig: 64, 128
+  offset: 14, 7
+  index: -1
+Effect/SanShe014_01
+  rotate: false
+  xy: 368, 378
+  size: 68, 100
+  orig: 128, 256
+  offset: 28, 0
+  index: -1
+Effect/SanShe014_02
+  rotate: false
+  xy: 254, 290
+  size: 112, 188
+  orig: 128, 256
+  offset: 4, 4
+  index: -1
+Effect/SanShe014_03
+  rotate: false
+  xy: 260, 670
+  size: 124, 200
+  orig: 128, 256
+  offset: 0, 28
+  index: -1
+Effect/SanShe014_04
+  rotate: false
+  xy: 257, 480
+  size: 124, 188
+  orig: 128, 256
+  offset: 4, 56
+  index: -1
+Effect/SanShe014_05
+  rotate: true
+  xy: 2, 199
+  size: 124, 164
+  orig: 128, 256
+  offset: 4, 88
+  index: -1
+Effect/SanShe014_06
+  rotate: true
+  xy: 251, 164
+  size: 124, 144
+  orig: 128, 256
+  offset: 4, 112
+  index: -1
+Effect/SanShe014_07
+  rotate: false
+  xy: 124, 64
+  size: 124, 112
+  orig: 128, 256
+  offset: 4, 144
+  index: -1
+Effect/SanShe014_08
+  rotate: false
+  xy: 250, 70
+  size: 116, 92
+  orig: 128, 256
+  offset: 4, 164
+  index: -1
+Effect/YanWu005_01
+  rotate: true
+  xy: 383, 559
+  size: 65, 53
+  orig: 85, 85
+  offset: 20, 13
+  index: -1
+Effect/YanWu005_02
+  rotate: false
+  xy: 174, 5
+  size: 82, 57
+  orig: 86, 85
+  offset: 3, 15
+  index: -1
+Effect/YanWu005_03
+  rotate: false
+  xy: 89, 2
+  size: 83, 60
+  orig: 85, 85
+  offset: 1, 13
+  index: -1
+Effect/YanWu005_04
+  rotate: false
+  xy: 2, 11
+  size: 85, 64
+  orig: 85, 86
+  offset: 0, 11
+  index: -1
+Effect/YanWu005_05
+  rotate: true
+  xy: 368, 290
+  size: 86, 67
+  orig: 86, 86
+  offset: 0, 8
+  index: -1
+Effect/YanWu005_06
+  rotate: false
+  xy: 168, 253
+  size: 81, 70
+  orig: 85, 86
+  offset: 0, 8
+  index: -1
+Effect/YanWu005_07
+  rotate: true
+  xy: 168, 178
+  size: 73, 75
+  orig: 85, 85
+  offset: 0, 4
+  index: -1
+Effect/YanWu005_08
+  rotate: true
+  xy: 368, 94
+  size: 68, 70
+  orig: 86, 85
+  offset: 3, 10
+  index: -1
+Effect/YanWu005_09
+  rotate: false
+  xy: 368, 32
+  size: 64, 60
+  orig: 85, 85
+  offset: 5, 20
+  index: -1

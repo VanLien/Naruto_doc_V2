@@ -1,0 +1,1218 @@
+--------------------------------------------
+-- 锻造屋 - 制造页签
+-- 对应CSB: res/csb/forgehouse/forge_craft_panel.csb
+-- 说明:
+-- 1. 空 nguyên liệu dùng dấu + xanh, không dùng khóa
+-- 2. Ưu tiên đọc dữ liệu từ game/forgehouse/forge_craft_data, fallback sang Config.ItemProductData
+-- 3. Chọn tab -> hiện danh sách trang bị đúng tab hiện tại
+-- 4. Click ? -> hiện mô tả chế tạo
+
+-- buildDemoRecipe(tab, bid_trang_bi_ket_qua, 
+-- {{bid_nguyen_lieu_1, so_luong}, {bid_nguyen_lieu_2, so_luong}, {bid_nguyen_lieu_3, so_luong}}, {{1, vang}}, 
+-- cap_yeu_cau, thu_tu_hien_thi)
+--------------------------------------------
+ForgeCraftPanel = class("ForgeCraftPanel", function()
+    return ccui.Widget:create()
+end)
+
+local _table_insert = table.insert
+local _table_sort = table.sort
+local _pairs = pairs
+local _ipairs = ipairs
+local _type = type
+local _string_format = string.format
+
+local DEFAULT_TAB_NAME = {
+    [1] = TI18N("Vũ khí"),
+    [2] = TI18N("Áo quần"),
+    [3] = TI18N("Mũ"),
+    [4] = TI18N("Giày"),
+}
+
+local function ensureForgeCraftDataLoaded()
+    if ForgeCraftData ~= nil then
+        return ForgeCraftData
+    end
+    if Config and Config.ForgeCraftData ~= nil then
+        return Config.ForgeCraftData
+    end
+    pcall(function()
+        require("config.forge_craft_data")
+    end)
+    if ForgeCraftData ~= nil then
+        return ForgeCraftData
+    end
+    return Config and Config.ForgeCraftData or nil
+end
+
+local function getCraftConst(key, default_value)
+    local craft_data = ensureForgeCraftDataLoaded()
+    if craft_data then
+        if craft_data.getConst then
+            local value = craft_data:getConst(key)
+            if value ~= nil then
+                return value
+            end
+        end
+        if craft_data.Const and craft_data.Const[key] ~= nil then
+            return craft_data.Const[key]
+        end
+    end
+    return default_value
+end
+
+local function getCraftExplainDesc()
+    local craft_data = ensureForgeCraftDataLoaded()
+    if craft_data then
+        if craft_data.getExplainDesc then
+            local value = craft_data:getExplainDesc()
+            if value ~= nil then
+                return value
+            end
+        end
+        if craft_data.Const and craft_data.Const.explain_desc ~= nil then
+            return craft_data.Const.explain_desc
+        end
+    end
+    return ""
+end
+
+local function getCraftRecipeList()
+    local craft_data = ensureForgeCraftDataLoaded()
+    if craft_data then
+        if craft_data.getRecipeList then
+            local list = craft_data:getRecipeList()
+            if list ~= nil then
+                return list
+            end
+        end
+        if craft_data.Recipe ~= nil then
+            return craft_data.Recipe
+        end
+    end
+    return nil
+end
+
+local function shallowCopy(data)
+    local result = {}
+    if data then
+        for k, v in _pairs(data) do
+            result[k] = v
+        end
+    end
+    return result
+end
+
+local function getItemConfigByBid(bid)
+    if bid == nil then return nil end
+    if Config.ItemData and Config.ItemData.data_get_data then
+        local cfg = Config.ItemData.data_get_data(bid)
+        if cfg then return cfg end
+    end
+    if Config.ItemData1 and Config.ItemData1.data_unit then
+        local cfg = Config.ItemData1.data_unit(bid)
+        if cfg then return cfg end
+    end
+    if Config.ItemData2 and Config.ItemData2.data_unit then
+        local cfg = Config.ItemData2.data_unit(bid)
+        if cfg then return cfg end
+    end
+    if Config.ItemData3 and Config.ItemData3.data_unit then
+        local cfg = Config.ItemData3.data_unit(bid)
+        if cfg then return cfg end
+    end
+    if Config.ItemData6 and Config.ItemData6.data_unit then
+        local cfg = Config.ItemData6.data_unit(bid)
+        if cfg then return cfg end
+    end
+    return nil
+end
+
+local function runDelay(target, delay_time, callback)
+    if target == nil or callback == nil then
+        return
+    end
+    delayRun(target, delay_time or 1/30, callback)
+end
+
+local function guessForgeTabByBid(bid)
+    if _type(bid) ~= "number" then
+        return nil
+    end
+    local group = math.floor(bid / 100)
+    if group == 401 then
+        return 1
+    elseif group == 402 then
+        return 2
+    elseif group == 403 then
+        return 3
+    elseif group == 404 then
+        return 4
+    end
+    return nil
+end
+
+function ForgeCraftPanel:ctor()
+    self.ctrl = ForgeHouseController:getInstance()
+    self.forge_model = self.ctrl:getModel()
+
+    self.backpack_ctrl = BackpackController:getInstance()
+    self.backpack_model = self.backpack_ctrl:getModel()
+
+    self.tab_list = {}
+    self.recipe_data_list = {}
+    self.cur_tab = 1
+    self.cur_data = nil
+    self.select_item = nil
+    self.material_item_list = {}
+    self.preview_item_list = {}
+    self.preview_rate_label_list = {}
+    self.is_show_effect = false
+    self.last_result_bid = nil
+
+    -- chờ sync lại túi sau khi chế tạo thành công
+    self.wait_bag_reload = false
+    self.pending_keep_bid = nil
+    self.reload_bag_state = {}
+
+    self:layoutUI()
+    self:registerEvents()
+    self:updateRecipeData()
+end
+
+function ForgeCraftPanel:layoutUI()
+    self.size = cc.size(720, 1280)
+    self:setContentSize(self.size)
+    self:setAnchorPoint(cc.p(0, 0))
+    self:setCascadeOpacityEnabled(true)
+
+    self.root_wnd = createCSBNote(PathTool.getTargetCSB("forgehouse/forge_craft_panel"))
+    self.root_wnd:setPosition(0, 0)
+    self:addChild(self.root_wnd)
+
+    self.main_container = self.root_wnd:getChildByName("main_container")
+    self.explain_btn = self.main_container and self.main_container:getChildByName("explain_btn")
+    self.compound_btn = self.main_container:getChildByName("compound_btn")
+    self.compound_label = self.compound_btn and (self.compound_btn:getChildByName("label") or self.compound_btn:getChildByName("Text_1"))
+    if self.compound_label then
+        self.compound_label:setString(getCraftConst("compound_btn_label", TI18N("Tạo")))
+    end
+
+    self.goods_con = self.main_container:getChildByName("goods_con")
+	
+self.text_Field = self.main_container:getChildByName("text_Field") or (self.goods_con and self.goods_con:getChildByName("text_Field"))
+self.spriteGold = self.main_container:getChildByName("spriteGold") or (self.goods_con and self.goods_con:getChildByName("spriteGold"))
+self.gold_num = self.main_container:getChildByName("gold_num") or (self.goods_con and self.goods_con:getChildByName("gold_num"))
+self.gold_bg = self.main_container:getChildByName("gold_bg") or (self.goods_con and self.goods_con:getChildByName("gold_bg"))
+
+
+    self.category_panel = self.main_container:getChildByName("category_panel")
+    self.tab_container = self.category_panel and self.category_panel:getChildByName("tab_container")
+
+    self.result_pos = self.main_container:getChildByName("pos_result")
+    self.preview_pos_blue = self.main_container:getChildByName("pos_node_blue")
+    self.preview_pos_purple = self.main_container:getChildByName("pos_node_purple")
+    self.preview_pos_gold = self.main_container:getChildByName("pos_node_gold")
+    self.rate_txt_blue = self.main_container:getChildByName("rate_txt_blue")
+    self.rate_txt_purple = self.main_container:getChildByName("rate_txt_purple")
+    self.rate_txt_gold = self.main_container:getChildByName("rate_txt_gold")
+
+    self:createMaterialItems()
+    self:createResultItem()
+    self:createPreviewItems()
+    self:createGoodsList()
+    --self:createInfoLabels()
+    self:initTabs()
+    self:updateCompoundBtnStatus(false)
+end
+
+function ForgeCraftPanel:createMaterialItems()
+    for i = 1, 3 do
+        local pos_node = self.main_container:getChildByName("pos_node_" .. i)
+        if pos_node then
+            local item = BackPackItem.new(false, true, false, nil, true, false)
+            item:setPosition(cc.p(pos_node:getPositionX(), pos_node:getPositionY()))
+            item:showArtifactLock(false)
+            if item.showAddIcon then
+                item:showAddIcon(true)
+            end
+            item:setNeedNum(0)
+
+            -- phải add vào cùng parent với pos_node
+            self.main_container:addChild(item, 10)
+            self.material_item_list[i] = item
+
+            item:addCallBack(function()
+                local data = item:getData()
+                if data then
+                    (self.backpack_ctrl or self.ctrl):openTipsSource(true, data)
+                end
+            end)
+        end
+    end
+end
+
+function ForgeCraftPanel:createResultItem()
+    if not self.result_pos then return end
+    self.result_item = BackPackItem.new(false, true, false, nil, true, false)
+    self.result_item:setPosition(self.result_pos:getPosition())
+    self.result_item:addCallBack(function(cli_item)
+        local data = cli_item:getData()
+        if data and next(data) ~= nil then
+            local show_bid = data.bid or data.base_id or data.id
+            if show_bid then
+                TipsManager:getInstance():showGoodsTips(show_bid)
+            else
+                self.ctrl:openTipsSource(true, data)
+            end
+        end
+    end)
+    self.main_container:addChild(self.result_item)
+self.result_name = nil
+    --local result_x = self.result_pos:getPositionX()
+    --local result_y = self.result_pos:getPositionY()
+    --self.result_name = createLabel(24, Config.ColorData.data_color4[175], nil, result_x, result_y - 96, "", self.main_container, 2, cc.p(0.5, 0.5))
+    --elf.result_name:setString("")
+end
+
+function ForgeCraftPanel:createPreviewItems()
+    self.preview_rate_label_list = {
+        self.rate_txt_blue,
+        self.rate_txt_purple,
+        self.rate_txt_gold
+    }
+
+    local pos_list = {
+        self.preview_pos_blue,
+        self.preview_pos_purple,
+        self.preview_pos_gold
+    }
+
+    for i, pos_node in ipairs(pos_list) do
+        if pos_node then
+            local item = BackPackItem.new(false, true, false, nil, true, false)
+            item:setPosition(cc.p(pos_node:getPositionX(), pos_node:getPositionY()))
+            item:showArtifactLock(false)
+            if item.showAddIcon then
+                item:showAddIcon(false)
+            end
+            item:setVisible(false)
+            item:addCallBack(function(cli_item)
+                local data = cli_item:getData()
+                if data and next(data) ~= nil then
+                    local show_bid = data.bid or data.base_id or data.id
+                    if show_bid then
+                        TipsManager:getInstance():showGoodsTips(show_bid)
+                    end
+                end
+            end)
+            self.main_container:addChild(item, 12)
+            self.preview_item_list[i] = item
+        end
+    end
+end
+
+function ForgeCraftPanel:clearPreviewItems()
+    for _, item in _pairs(self.preview_item_list or {}) do
+        item:setVisible(false)
+    end
+    for _, label in _pairs(self.preview_rate_label_list or {}) do
+        if label then
+            label:setString("")
+        end
+    end
+end
+
+function ForgeCraftPanel:getRecipeResultPool(data)
+    if not data then
+        return {}
+    end
+
+    local result_pool = data.result_pool or data.reward_pool or data.result_list or data.award_pool or {}
+    local list = {}
+
+    for _, value in _pairs(result_pool) do
+        local weight = 0
+        local bid = 0
+
+        if _type(value) == "table" then
+            if value[1] and value[2] then
+                weight = tonumber(value[1]) or 0
+                bid = tonumber(value[2]) or 0
+            else
+                weight = tonumber(value.weight or value.rate or value.prob or value.percent or 0) or 0
+                bid = tonumber(value.bid or value.base_id or value.id or 0) or 0
+            end
+        end
+
+        if weight > 0 and bid > 0 then
+            _table_insert(list, {weight = weight, bid = bid})
+        end
+    end
+
+    _table_sort(list, function(a, b)
+        if a.weight == b.weight then
+            return a.bid < b.bid
+        end
+        return a.weight > b.weight
+    end)
+
+    return list
+end
+
+function ForgeCraftPanel:refreshPreviewItems(data)
+    self:clearPreviewItems()
+
+    if not data then
+        return
+    end
+
+    local pool_list = self:getRecipeResultPool(data)
+    if pool_list == nil or next(pool_list) == nil then
+        return
+    end
+
+    for i = 1, 3 do
+        local pool_data = pool_list[i]
+        local item = self.preview_item_list and self.preview_item_list[i]
+        local rate_label = self.preview_rate_label_list and self.preview_rate_label_list[i]
+
+        if pool_data and item then
+            local item_cfg = getItemConfigByBid(pool_data.bid)
+            if item_cfg then
+                item:setData(item_cfg)
+                item:setVisible(true)
+            end
+
+            if rate_label then
+                local percent = (pool_data.weight or 0) / 100
+                if math.floor(percent) == percent then
+                    rate_label:setString(_string_format("%d%%", percent))
+                else
+                    rate_label:setString(_string_format("%.1f%%", percent))
+                end
+            end
+        end
+    end
+end
+
+function ForgeCraftPanel:createGoodsList()
+    if not self.goods_con then return end
+
+    local scroll_view_size = cc.size(self.goods_con:getContentSize().width, 138)
+    local setting = {
+        item_class = BackPackItem,
+        start_x = 8,
+        space_x = 12,
+        start_y = 10,
+        space_y = 0,
+        item_width = 119,
+        item_height = 119,
+        row = 1,
+        col = 0
+    }
+    self.list_view = CommonScrollViewLayout.new(self.goods_con, cc.p(0, 210), ScrollViewDir.horizontal, ScrollViewStartPos.top, scroll_view_size, setting)
+end
+
+function ForgeCraftPanel:createInfoLabels()
+    if not self.goods_con then return end
+    local size = self.goods_con:getContentSize()
+
+    self.select_name = createLabel(24, Config.ColorData.data_color4[175], nil, size.width * 0.5, 118, "", self.goods_con, 2, cc.p(0.5, 0.5))
+    self.select_name:setString("")
+
+    self.cost_label = createRichLabel(22, Config.ColorData.data_color4[175], cc.p(0.5, 1), cc.p(size.width * 0.5, 86), 600)
+    self.goods_con:addChild(self.cost_label)
+
+    self.tip_label = createLabel(20, Config.ColorData.data_color4[174], nil, size.width * 0.5, 25, "", self.goods_con, 2, cc.p(0.5, 0.5))
+    self.tip_label:setString("")
+end
+
+function ForgeCraftPanel:initTabs()
+    for i = 1, 4 do
+        local tab_btn = self.tab_container and self.tab_container:getChildByName("tab_btn_" .. i)
+        if tab_btn then
+            local object = {}
+            object.index = i
+            object.tab_btn = tab_btn
+            object.normal = tab_btn:getChildByName("normal")
+            object.select = tab_btn:getChildByName("select")
+            object.title = tab_btn:getChildByName("title")
+            object.redpoint = tab_btn:getChildByName("redpoint")
+            if object.select then
+                object.select:setVisible(i == self.cur_tab)
+            end
+            if object.normal then
+                object.normal:setVisible(i ~= self.cur_tab)
+            end
+            if object.redpoint then
+                object.redpoint:setVisible(false)
+            end
+            if object.title then
+                object.title:setString(self:getTabName(i))
+            end
+            tab_btn:addTouchEventListener(function(sender, event_type)
+                if event_type == ccui.TouchEventType.ended then
+                    playButtonSound2()
+                    self:onClickTab(i)
+                end
+            end)
+            self.tab_list[i] = object
+        end
+    end
+end
+
+function ForgeCraftPanel:registerEvents()
+    if self.compound_btn then
+        registerButtonEventListener(self.compound_btn, handler(self, self.onClickCompoundBtn))
+    end
+    if self.explain_btn then
+        registerButtonEventListener(self.explain_btn, handler(self, self.onClickExplainBtn), true, 1)
+    end
+
+    -- kết quả chế tạo của tab 3
+    if not self.craft_result_evt then
+        self.craft_result_evt = GlobalEvent:getInstance():Bind(ForgeHouseEvent.Craft_Result, function(data)
+            self:onCraftResult(data)
+        end)
+    end
+
+    -- cập nhật lại khi số lượng đồ trong túi thay đổi
+    if not self.add_goods_evt then
+        self.add_goods_evt = GlobalEvent:getInstance():Bind(BackpackEvent.ADD_GOODS, function()
+            self:refreshCurrentRecipeStateLater(1/30)
+        end)
+    end
+    if not self.delete_goods_evt then
+        self.delete_goods_evt = GlobalEvent:getInstance():Bind(BackpackEvent.DELETE_GOODS, function()
+            self:refreshCurrentRecipeStateLater(1/30)
+        end)
+    end
+    if not self.modify_goods_evt then
+        self.modify_goods_evt = GlobalEvent:getInstance():Bind(BackpackEvent.MODIFY_GOODS_NUM, function()
+            self:refreshCurrentRecipeStateLater(1/30)
+        end)
+    end
+
+    -- full reload túi xong mới refresh lại panel chế tạo
+    if not self.get_all_data_evt then
+        self.get_all_data_evt = GlobalEvent:getInstance():Bind(BackpackEvent.GET_ALL_DATA, function(bag_code)
+            if not self.wait_bag_reload then
+                return
+            end
+
+            if bag_code == BackPackConst.Bag_Code.BACKPACK or bag_code == BackPackConst.Bag_Code.EQUIPS then
+                self.reload_bag_state[bag_code] = true
+            end
+
+            -- chỉ cần túi BACKPACK load xong là đã cập nhật được nguyên liệu tiêu hao
+            if self.reload_bag_state[BackPackConst.Bag_Code.BACKPACK] then
+                local keep_bid = self.pending_keep_bid
+
+                self:updateRecipeData()
+
+                if keep_bid then
+                    self:refreshSelectByBid(keep_bid)
+                else
+                    self:refreshSelectByBid(nil)
+                end
+
+                self.wait_bag_reload = false
+                self.pending_keep_bid = nil
+                self.reload_bag_state = {}
+                self:refreshCurrentRecipeStateLater(1/20)
+            end
+        end)
+    end
+end
+
+function ForgeCraftPanel:onCraftResult(data)
+    self:handleComEffect(false)
+
+    if not data then
+        return
+    end
+
+    if data.msg and data.msg ~= "" then
+        message(data.msg)
+    end
+
+    if data.result ~= 1 then
+        return
+    end
+
+    local result_bid = data.result_bid or 0
+    if result_bid <= 0 then
+        return
+    end
+
+    self.last_result_bid = result_bid
+
+    -- không refresh ngay, vì lúc này backpack_model còn có thể chưa sync xong
+    self.pending_keep_bid = self.cur_data and self.cur_data.bid or nil
+    self.wait_bag_reload = true
+    self.reload_bag_state = {}
+
+    -- chủ động reload lại túi vật phẩm và túi trang bị
+    if self.backpack_ctrl then
+        self.backpack_ctrl:sender10500()
+        self.backpack_ctrl:sender10501()
+    end
+    self:refreshCurrentRecipeStateLater(0.15)
+
+    local result_cfg = getItemConfigByBid(result_bid)
+    if self.result_item then
+        self.result_item:setData(result_cfg or {bid = result_bid})
+    end
+    if self.result_name then
+        self.result_name:setString(result_cfg and result_cfg.name or ("BID:" .. tostring(result_bid)))
+    end
+
+    local items = {}
+    items[1] = {
+        bid = result_bid,
+        num = 1,
+        show_type = MainuiConst.item_exhibition_type.item_type
+    }
+    MainuiController:getInstance():openGetItemView(true, items, 0, {is_backpack = true}, MainuiConst.item_open_type.normal)
+
+    message(getCraftConst("success_msg", TI18N("Chế tạo thành công")))
+end
+
+
+function ForgeCraftPanel:onClickExplainBtn(param, sender)
+    local desc = getCraftExplainDesc()
+    if not desc or desc == "" then
+        return
+    end
+
+    local world_pos = nil
+    if sender and sender.getTouchBeganPosition then
+        world_pos = sender:getTouchBeganPosition()
+    end
+    if not world_pos and sender and sender.convertToWorldSpace and sender.getContentSize then
+        local size = sender:getContentSize()
+        world_pos = sender:convertToWorldSpace(cc.p(size.width * 0.5, size.height * 0.5))
+    end
+    if not world_pos then
+        world_pos = cc.p(360, 640)
+    end
+
+    TipsManager:getInstance():showCommonTips(desc, world_pos, 22, nil, 460)
+end
+
+function ForgeCraftPanel:onClickTab(index)
+    if self.cur_tab == index then return end
+    self.cur_tab = index
+    self.last_result_bid = nil
+    self:updateTabStatus()
+    self:refreshRecipeList()
+end
+
+function ForgeCraftPanel:updateTabStatus()
+    for i, object in _pairs(self.tab_list) do
+        local status = (i == self.cur_tab)
+        if object.select then
+            object.select:setVisible(status)
+        end
+        if object.normal then
+            object.normal:setVisible(not status)
+        end
+    end
+end
+
+function ForgeCraftPanel:updateTabTitles()
+    for i, object in _pairs(self.tab_list) do
+        if object.title then
+            object.title:setString(self:getTabName(i))
+        end
+    end
+end
+
+function ForgeCraftPanel:updateTabRedPoint()
+    for i, object in _pairs(self.tab_list) do
+        if object.redpoint then
+            object.redpoint:setVisible(self:checkTabHasCanCompose(i))
+        end
+    end
+end
+
+function ForgeCraftPanel:updateRecipeData()
+    self.recipe_data_list = self:getRecipeConfigList()
+    self:updateTabTitles()
+    self:refreshRecipeList()
+end
+
+
+function ForgeCraftPanel:normalizeRecipeData(raw)
+    if not raw then
+        return nil
+    end
+
+    local data = shallowCopy(raw)
+    data.bid = data.bid or data.id or data.target_bid or data.result_bid or data.item_bid
+    if not data.bid then
+        return nil
+    end
+
+    data.need_items = data.need_items or data.need_item or data.materials or data.consume_items or {}
+    data.loss = data.loss or data.need_assets or data.cost_assets or {}
+    data.result_pool = data.result_pool or data.reward_pool or data.result_list or data.award_pool or {}
+    data.lev = data.lev or data.limit_lev or data.role_lev or data.limit_grade or 1
+    data.order = data.order or data.sort or data.id or data.bid
+
+    local item_cfg = getItemConfigByBid(data.bid) or {}
+    if not data.name or data.name == "" then
+        data.name = item_cfg.name or ("Item " .. tostring(data.bid))
+    end
+
+    if not data.tab then
+        data.tab = guessForgeTabByBid(data.bid)
+    end
+
+    return data
+end
+
+function ForgeCraftPanel:getRecipeConfigList()
+    local list = {}
+    self.is_demo_data = false
+
+    local raw_list = getCraftRecipeList()
+
+    if not raw_list or next(raw_list) == nil then
+        local cfg = Config.ItemProductData
+        raw_list = cfg and cfg.data_product_data or nil
+    end
+
+    if not raw_list or next(raw_list) == nil then
+        print("ForgeCraftPanel:getRecipeConfigList() missing recipe config")
+        return list
+    end
+
+    for _, raw in _pairs(raw_list) do
+        if self:isForgeRecipe(raw) then
+            local data = self:normalizeRecipeData(raw)
+            if data then
+                _table_insert(list, data)
+            end
+        end
+    end
+
+    _table_sort(list, function(a, b)
+        local order_a = a.order or a.sort or a.id or a.bid or 0
+        local order_b = b.order or b.sort or b.id or b.bid or 0
+        if order_a == order_b then
+            return (a.bid or 0) < (b.bid or 0)
+        end
+        return order_a < order_b
+    end)
+    return list
+end
+
+function ForgeCraftPanel:isForgeRecipe(data)
+    if not data then
+        return false
+    end
+
+    if data.show_in_forgehouse ~= nil then
+        return data.show_in_forgehouse == true or data.show_in_forgehouse == 1
+    end
+    if data.forgehouse ~= nil then
+        return data.forgehouse == true or data.forgehouse == 1
+    end
+    if data.panel ~= nil then
+        return data.panel == "forgehouse" or data.panel == 4
+    end
+    if data.show_panel ~= nil then
+        return data.show_panel == "forgehouse" or data.show_panel == 4
+    end
+    if data.module ~= nil then
+        return data.module == "forgehouse" or data.module == 4
+    end
+
+    local bid = data.bid or data.id or data.target_bid or data.result_bid or data.item_bid
+    local tab = guessForgeTabByBid(bid)
+    if tab == nil then
+        return false
+    end
+
+    local need_items = data.need_items or data.need_item or data.materials or data.consume_items
+    return need_items ~= nil and next(need_items) ~= nil
+end
+
+function ForgeCraftPanel:getTabName(tab_id)
+    local craft_data = ensureForgeCraftDataLoaded()
+    if craft_data then
+        if craft_data.getTabName then
+            local tab_name = craft_data:getTabName(tab_id)
+            if tab_name and tab_name ~= "" then
+                return tab_name
+            end
+        end
+        if craft_data.TabName and craft_data.TabName[tab_id] then
+            return craft_data.TabName[tab_id]
+        end
+    end
+
+    local cfg = Config.ItemProductData
+    if cfg then
+        if cfg.data_tab_data and cfg.data_tab_data[tab_id] then
+            local tab_data = cfg.data_tab_data[tab_id]
+            return tab_data.name or tab_data.tab_name or tab_data.label or DEFAULT_TAB_NAME[tab_id]
+        end
+        if cfg.data_tab_list and cfg.data_tab_list[tab_id] then
+            local tab_data = cfg.data_tab_list[tab_id]
+            return tab_data.name or tab_data.tab_name or tab_data.label or DEFAULT_TAB_NAME[tab_id]
+        end
+    end
+    return DEFAULT_TAB_NAME[tab_id] or ("Tab " .. tab_id)
+end
+
+function ForgeCraftPanel:getRecipeTabId(data)
+    if not data then
+        return 1
+    end
+
+    local key_list = {"tab", "tab_id", "tab_type", "group", "group_id", "type", "sub_type"}
+    for _, key in _ipairs(key_list) do
+        local value = data[key]
+        if _type(value) == "number" and value >= 1 and value <= 4 then
+            return value
+        end
+    end
+
+    local bid = data.bid or data.id or data.target_bid or data.result_bid or data.item_bid
+    return guessForgeTabByBid(bid) or 1
+end
+
+function ForgeCraftPanel:getRecipeListByTab(tab_id)
+    local list = {}
+    for _, data in _pairs(self.recipe_data_list or {}) do
+        if self:getRecipeTabId(data) == tab_id then
+            _table_insert(list, data)
+        end
+    end
+    return list
+end
+
+function ForgeCraftPanel:refreshRecipeList()
+    if not self.list_view then return end
+    local data_list = self:getRecipeListByTab(self.cur_tab)
+    local old_bid = self.cur_data and self.cur_data.bid or nil
+    self.select_item = nil
+
+local function callback(item)
+    local data = item:getData()
+    if not data or next(data) == nil then return end
+
+    if self.select_item and self.select_item ~= item then
+        self.select_item:setSelected(false)
+    end
+
+    if not self.cur_data or self.cur_data.bid ~= data.bid then
+        self.last_result_bid = nil
+    end
+
+    self.select_item = item
+    self.cur_data = data
+    self.select_item:setSelected(true)
+    self:refreshRecipeInfo()
+end
+    self.list_view:setData(data_list, callback)
+
+    delayRun(self.goods_con, 1/60, function()
+        self:refreshSelectByBid(old_bid)
+    end)
+end
+
+function ForgeCraftPanel:refreshSelectByBid(bid)
+    if not self.list_view then
+        self:refreshRecipeInfo()
+        return
+    end
+
+    local item_list = self.list_view:getItemList() or {}
+    local first_item = nil
+    local target_item = nil
+
+    for _, item in _pairs(item_list) do
+        local data = item:getData()
+        item:showRedPoint(false)
+        item:setSelected(false)
+
+        if not first_item then
+            first_item = item
+        end
+        if bid and data and data.bid == bid then
+            target_item = item
+        end
+    end
+
+    self.select_item = target_item or first_item
+    if self.select_item then
+        self.select_item:setSelected(true)
+        self.cur_data = self.select_item:getData()
+    else
+        self.cur_data = nil
+    end
+
+    self:refreshRecipeInfo()
+    self:updateTabRedPoint()
+end
+
+function ForgeCraftPanel:refreshCurrentRecipeState()
+    if self.cur_data and self.cur_data.bid then
+        self:refreshSelectByBid(self.cur_data.bid)
+    else
+        self:refreshSelectByBid(nil)
+    end
+end
+
+function ForgeCraftPanel:refreshCurrentRecipeStateLater(delay_time)
+    local target = self.root_wnd or self
+    runDelay(target, delay_time or 1/30, function()
+        if self == nil or self.root_wnd == nil then
+            return
+        end
+        self:refreshCurrentRecipeState()
+    end)
+end
+
+function ForgeCraftPanel:refreshRecipeInfo()
+    self:clearMaterialItems()
+    self:refreshPreviewItems(self.cur_data)
+
+if self.result_item then
+    local show_bid = self.last_result_bid or (self.cur_data and self.cur_data.bid)
+    local result_cfg = show_bid and getItemConfigByBid(show_bid) or nil
+    self.result_item:setData(result_cfg or self.cur_data)
+end
+
+if self.cur_data == nil then
+    if self.result_name then
+        self.result_name:setString("")
+    end
+
+    if self.text_Field then
+        self.text_Field:setString("")
+    end
+
+    if self.gold_num then
+        self.gold_num:setString("")
+    end
+
+    if self.spriteGold then
+        self.spriteGold:setVisible(false)
+    end
+
+    if self.gold_bg then
+        self.gold_bg:setVisible(false)
+    end
+
+    self:updateCompoundBtnStatus(false)
+    return
+end
+
+local recipe_name = self.cur_data.name or ""
+if self.result_name then
+    if self.last_result_bid then
+        local last_cfg = getItemConfigByBid(self.last_result_bid)
+        self.result_name:setString(last_cfg and last_cfg.name or ("BID:" .. tostring(self.last_result_bid)))
+    else
+        self.result_name:setString(recipe_name)
+    end
+end
+if self.text_Field then
+    self.text_Field:setString(recipe_name)
+end
+
+    local need_items = self.cur_data.need_items or {}
+    for i = 1, 3 do
+        local item = self.material_item_list[i]
+        local need_data = need_items[i]
+        if item and need_data and need_data[1] and need_data[2] then
+            local need_bid = need_data[1]
+            local need_num = need_data[2]
+            local item_cfg = getItemConfigByBid(need_bid)
+			local count = self.backpack_model and self.backpack_model.getBackPackItemNumByBid and self.backpack_model:getBackPackItemNumByBid(need_bid) or 0
+            item:setData(item_cfg)
+            item:showArtifactLock(false)
+            if item.showAddIcon then
+                item:showAddIcon(false)
+            end
+            item:setNeedNum(need_num, count)
+        end
+    end
+
+
+local loss_list = self.cur_data.loss or {}
+local show_cost = false
+
+for _, value in pairs(loss_list) do
+    local cost_bid = value[1] or 0
+    local need_num = value[2] or 0
+
+    if cost_bid > 0 and need_num > 0 then
+        local cost_cfg = getItemConfigByBid(cost_bid)
+
+        if cost_cfg then
+            show_cost = true
+
+            local has_num = 0
+local role_vo = RoleController:getInstance():getRoleVo()
+local asset_key = Config.ItemData and Config.ItemData.data_assets_id2label and Config.ItemData.data_assets_id2label[cost_id]
+
+if asset_key and role_vo and role_vo[asset_key] ~= nil then
+    own_num = role_vo[asset_key] or 0
+elseif self.backpack_model and self.backpack_model.getBackPackItemNumByBid then
+    own_num = self.backpack_model:getBackPackItemNumByBid(cost_id) or 0
+end
+
+            if self.gold_num then
+                self.gold_num:setString(string.format("%s/%s", has_num, need_num))
+
+                if has_num >= need_num then
+                    self.gold_num:setTextColor(cc.c4b(255, 255, 255, 255))
+                else
+                    self.gold_num:setTextColor(cc.c4b(255, 80, 80, 255))
+                end
+            end
+
+            if self.spriteGold then
+                local res = PathTool.getItemRes(cost_cfg.icon)
+                loadSpriteTexture(self.spriteGold, res, LOADTEXT_TYPE)
+                self.spriteGold:setVisible(true)
+            end
+
+            if self.gold_bg then
+                self.gold_bg:setVisible(true)
+            end
+
+            break
+        end
+    end
+end
+
+if not show_cost then
+    if self.gold_num then
+        self.gold_num:setString("")
+    end
+    if self.spriteGold then
+        self.spriteGold:setVisible(false)
+    end
+    if self.gold_bg then
+        self.gold_bg:setVisible(false)
+    end
+end
+
+    self:updateCompoundBtnStatus(self:checkGoodsIsEnough(self.cur_data))
+end
+
+function ForgeCraftPanel:clearMaterialItems()
+    for _, item in pairs(self.material_item_list) do
+        item:setData()
+        item:showArtifactLock(false)
+        if item.showAddIcon then
+            item:showAddIcon(true)
+        end
+        item:setNeedNum(0)
+    end
+end
+
+function ForgeCraftPanel:getRecipeTipString(data)
+    if not data then
+        return ""
+    end
+
+    local tip_list = {}
+    local role_vo = RoleController:getInstance():getRoleVo()
+    if data.lev and data.lev > 0 then
+        local own_lev = role_vo and role_vo.lev or 0
+        _table_insert(tip_list, _string_format("%s %s/%s", TI18N("Yêu cầu cấp:"), own_lev, data.lev))
+    end
+    return table.concat(tip_list, "    ")
+end
+
+function ForgeCraftPanel:getRecipeCostString(data)
+    if not data then
+        return ""
+    end
+
+    local loss_list = data.loss or {}
+    if next(loss_list) == nil then
+        return ""
+    end
+
+    local role_vo = RoleController:getInstance():getRoleVo()
+    local str_list = {}
+    for _, value in _pairs(loss_list) do
+        local asset_id = value[1] or 0
+        local need_num = value[2] or 0
+        local asset_cfg = getItemConfigByBid(asset_id)
+        local asset_key = Config.ItemData and Config.ItemData.data_assets_id2label and Config.ItemData.data_assets_id2label[asset_id]
+        local own_num = 0
+        if asset_key and role_vo and role_vo[asset_key] then
+            own_num = role_vo[asset_key]
+        end
+        local color = own_num >= need_num and 175 or 183
+        if asset_cfg then
+            local res = PathTool.getItemRes(asset_cfg.icon)
+            _table_insert(str_list, _string_format("<img src='%s' scale=0.35 /><div fontcolor=%s> %s/%s</div>", res, tranformC3bTostr(color), own_num, need_num))
+        else
+            _table_insert(str_list, _string_format("<div fontcolor=%s> %s/%s</div>", tranformC3bTostr(color), own_num, need_num))
+        end
+    end
+    return table.concat(str_list, "    ")
+end
+
+function ForgeCraftPanel:checkGoodsIsEnough(data)
+    if not data then return false end
+
+    local need_items = data.need_items or {}
+    for _, value in _pairs(need_items) do
+        if value and value[1] and value[2] then
+        local count = self.backpack_model and self.backpack_model.getBackPackItemNumByBid and self.backpack_model:getBackPackItemNumByBid(value[1]) or 0
+            if count < value[2] then
+                return false
+            end
+        end
+    end
+
+    local role_vo = RoleController:getInstance():getRoleVo()
+    local loss_list = data.loss or {}
+    for _, value in _pairs(loss_list) do
+        if value and value[1] and value[2] then
+            local asset_key = Config.ItemData and Config.ItemData.data_assets_id2label and Config.ItemData.data_assets_id2label[value[1]]
+            local own_num = asset_key and role_vo and role_vo[asset_key] or 0
+            if own_num < value[2] then
+                return false
+            end
+        end
+    end
+
+    if data.lev and data.lev > 0 then
+        local own_lev = role_vo and role_vo.lev or 0
+        if own_lev < data.lev then
+            return false
+        end
+    end
+
+    return true
+end
+
+function ForgeCraftPanel:checkTabHasCanCompose(tab_id)
+    local list = self:getRecipeListByTab(tab_id)
+    for _, data in _pairs(list) do
+        if self:checkGoodsIsEnough(data) then
+            return true
+        end
+    end
+    return false
+end
+
+function ForgeCraftPanel:updateCompoundBtnStatus(status)
+    if not self.compound_btn then return end
+    self.compound_btn:setTouchEnabled(status)
+    setChildUnEnabled(not status, self.compound_btn)
+end
+
+function ForgeCraftPanel:onClickCompoundBtn()
+    if self.is_show_effect == true then
+        return
+    end
+
+    if not self.cur_data then
+        message(getCraftConst("no_recipe_msg", TI18N("Chưa chọn công thức chế tạo")))
+        return
+    end
+
+    if not self:checkGoodsIsEnough(self.cur_data) then
+        message(getCraftConst("lack_material_msg", TI18N("Nguyên liệu không đủ")))
+        return
+    end
+
+    self:handleComEffect(true)
+end
+
+function ForgeCraftPanel:handleComEffect(status)
+    if status == true then
+        self.is_show_effect = true
+        if not tolua.isnull(self.result_pos) and self.com_effect == nil then
+            self.com_effect = createEffectSpine(
+                Config.EffectData.data_effect_info[661],
+                cc.p(0, 0),
+                cc.p(0.5, 0.5),
+                false,
+                PlayerAction.action,
+                handler(self, self.requestCompoundCraft)
+            )
+            self.result_pos:addChild(self.com_effect)
+        elseif self.com_effect then
+            self.com_effect:setToSetupPose()
+            self.com_effect:setAnimation(0, PlayerAction.action, false)
+        end
+    else
+        self.is_show_effect = false
+        if self.com_effect then
+            self.com_effect:clearTracks()
+            self.com_effect:removeFromParent()
+            self.com_effect = nil
+        end
+    end
+end
+function ForgeCraftPanel:requestCompoundCraft()
+    if not self.cur_data or not self.cur_data.bid then
+        self.is_show_effect = false
+        return
+    end
+    self.ctrl:send11084(self.cur_data.bid)
+    self.is_show_effect = false
+end
+
+function ForgeCraftPanel:DeleteMe()
+    self:handleComEffect(false)
+
+    self.wait_bag_reload = false
+    self.pending_keep_bid = nil
+    self.reload_bag_state = {}
+
+    if self.craft_result_evt then
+        GlobalEvent:getInstance():UnBind(self.craft_result_evt)
+        self.craft_result_evt = nil
+    end
+    if self.add_goods_evt then
+        GlobalEvent:getInstance():UnBind(self.add_goods_evt)
+        self.add_goods_evt = nil
+    end
+    if self.delete_goods_evt then
+        GlobalEvent:getInstance():UnBind(self.delete_goods_evt)
+        self.delete_goods_evt = nil
+    end
+    if self.modify_goods_evt then
+        GlobalEvent:getInstance():UnBind(self.modify_goods_evt)
+        self.modify_goods_evt = nil
+    end
+    if self.get_all_data_evt then
+        GlobalEvent:getInstance():UnBind(self.get_all_data_evt)
+        self.get_all_data_evt = nil
+    end
+    if self.compose_goods_success_evt then
+        GlobalEvent:getInstance():UnBind(self.compose_goods_success_evt)
+        self.compose_goods_success_evt = nil
+    end
+
+    if self.list_view then
+        self.list_view:DeleteMe()
+        self.list_view = nil
+    end
+
+    if self.result_item then
+        self.result_item:DeleteMe()
+        self.result_item = nil
+    end
+
+    for _, item in _pairs(self.material_item_list or {}) do
+        item:DeleteMe()
+    end
+    self.material_item_list = nil
+end

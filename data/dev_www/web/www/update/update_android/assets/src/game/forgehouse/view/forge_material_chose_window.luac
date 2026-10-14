@@ -1,0 +1,210 @@
+--------------------------------------------
+-- 锻造房 - 材料选择窗口 (giống ArtifactChoseWindow)
+-- Dùng cho Tab3: Chế Tạo -> chọn nguyên liệu
+-- UI: tái sử dụng "hero/artifact_chose_window"
+--------------------------------------------
+
+ForgeMaterialChoseWindow = ForgeMaterialChoseWindow or BaseClass(BaseView)
+
+local controller = ForgeHouseController:getInstance()
+
+ForgeHouseEvent = ForgeHouseEvent or {}
+ForgeHouseEvent.Craft_Material_Chose = ForgeHouseEvent.Craft_Material_Chose or "ForgeHouseEvent.Craft_Material_Chose"
+
+function ForgeMaterialChoseWindow:__init()
+    self.win_type = WinType.Mini
+    self.is_full_screen = false
+    self.view_tag = ViewMgrTag.DIALOGUE_TAG
+
+    -- Reuse UI tab2 (đã có sẵn trong client)
+    self.layout_name = "hero/artifact_chose_window"
+
+    self.res_list = {
+        {path = PathTool.getPlistImgForDownLoad('bigbg', 'bigbg_3'), type = ResourcesType.single},
+    }
+
+    self.max_num = 0
+    self.chose_list = {}
+    self.chose_num = 0
+    self.title_str = "Chọn nguyên liệu"
+end
+
+function ForgeMaterialChoseWindow:open_callback()
+    self.background = self.root_wnd:getChildByName("background")
+    self.background:setScale(display.getMaxScale())
+
+    local main_container = self.root_wnd:getChildByName("main_container")
+    self.main_container = main_container
+    self:playEnterAnimatianByObj(self.main_container, 2)
+
+    local title_con = main_container:getChildByName("title_con")
+    local title_label = title_con:getChildByName("title_label")
+    title_label:setString(self.title_str)
+
+    self.chose_label = main_container:getChildByName("chose_label")
+    self.ok_btn = main_container:getChildByName("ok_btn")
+    local ok_btn_label = self.ok_btn:getChildByName("label")
+    ok_btn_label:setString(TI18N("语言_c_63")) -- OK
+    self.close_btn = main_container:getChildByName("close_btn")
+
+    self.goods_con = main_container:getChildByName("goods_con")
+    local bgSize = self.goods_con:getContentSize()
+    local scroll_view_size = cc.size(bgSize.width, bgSize.height-10)
+    local setting = {
+        item_class = BackPackItem,
+        start_x = 15,
+        space_x = 20,
+        start_y = 0,
+        space_y = 10,
+        item_width = BackPackItem.Width,
+        item_height = BackPackItem.Height,
+        row = 0,
+        col = 4,
+    }
+    self.item_scrollview = CommonScrollViewLayout.new(
+        self.goods_con, cc.p(0,5),
+        ScrollViewDir.vertical, ScrollViewStartPos.top,
+        scroll_view_size, setting
+    )
+    self.item_scrollview:setSwallowTouches(false)
+
+    self.chose_label:setString(string.format("Đã chọn: %d", self.chose_num))
+end
+
+function ForgeMaterialChoseWindow:register_event()
+    registerButtonEventListener(self.background, handler(self, self._onClickBtnClose), false, 2)
+    registerButtonEventListener(self.close_btn, handler(self, self._onClickBtnClose), false, 2)
+    registerButtonEventListener(self.ok_btn, handler(self, self._onClickBtnOk))
+end
+
+function ForgeMaterialChoseWindow:setData(data)
+    self.max_num = data.max_num or 0
+    self.chose_list = data.chose_list or {}
+    self.title_str = data.title or self.title_str
+
+    self.chose_num = #self.chose_list
+    if self.chose_label then
+        self.chose_label:setString(string.format("Đã chọn: %d/%d", self.chose_num, self.max_num))
+    end
+
+    -- Lọc MATERIALS trong bag: ưu tiên SPECIAL (giống tab2), thêm PROPS để tránh thiếu
+    local MATERIALS_TYPE = nil
+    if BackPackConst and BackPackConst.item_type then
+        MATERIALS_TYPE = BackPackConst.item_type.MATERIALS
+    end
+    if MATERIALS_TYPE == nil then MATERIALS_TYPE = 9 end -- fallback
+
+    local list = {}
+    local index = 1
+
+    local function append_from_tab(tab_type)
+        local item_data = BackpackController:getInstance():getModel():getAllBackPackArray(tab_type) or {}
+        for _,v in pairs(item_data) do
+            if v and v.config and v.config.type == MATERIALS_TYPE then
+                local is_select = false
+                for _,n in pairs(self.chose_list) do
+                    if n == v.id then
+                        is_select = true
+                        break
+                    end
+                end
+                v:setGoodsAttr("showSellStatus", {status = true, select = is_select})
+                list[index] = v
+                index = index + 1
+            end
+        end
+    end
+
+    if BackPackConst and BackPackConst.item_tab_type then
+        if BackPackConst.item_tab_type.SPECIAL then append_from_tab(BackPackConst.item_tab_type.SPECIAL) end
+        if BackPackConst.item_tab_type.PROPS then append_from_tab(BackPackConst.item_tab_type.PROPS) end
+    else
+        -- fallback: thử SPECIAL
+        append_from_tab(BackPackConst.item_tab_type.SPECIAL)
+    end
+
+    table.sort(list, SortTools.tableLowerSorter({"quality", "id"}))
+    self.item_data = list or {}
+
+    self.item_scrollview:setData(self.item_data, nil, nil, {
+        showCheckBox = true,
+        checkBoxClickCallBack = handler(self, self._onCheckBoxCallBack),
+        adjustCheckBoxPos = cc.p(BackPackItem.Width-25, BackPackItem.Height-25),
+    })
+
+    if next(self.item_data) ~= nil then
+        self.item_scrollview:addEndCallBack(function()
+            local item_list = self.item_scrollview:getItemList() or {}
+            for _,item in pairs(item_list) do
+                item:addCallBack(function()
+                    local item_vo = item:getData()
+                    TipsManager:getInstance():showGoodsTips(item_vo, TipsConst.GoodsTip_Type.Default)
+                end)
+            end
+        end)
+        commonShowEmptyIcon(self.main_container, false)
+    else
+        local setting = {}
+        setting.text = "Không có nguyên liệu"
+        setting.label_color = Config.ColorData.data_color4[17]
+        commonShowEmptyIcon(self.main_container, true, setting)
+    end
+end
+
+-- checkbox: giới hạn tối đa
+function ForgeMaterialChoseWindow:_onCheckBoxCallBack(status, item_vo)
+    if not item_vo then return end
+
+    local chose_num = 0
+    for _,v in pairs(self.item_data or {}) do
+        if v.showSellStatus ~= nil and v.showSellStatus.select == true then
+            chose_num = chose_num + 1
+        end
+    end
+
+    if chose_num > self.max_num then
+        item_vo:setGoodsAttr("showSellStatus", {status = true, select = false})
+        message("Đã đạt giới hạn chọn")
+        chose_num = self.max_num
+    end
+
+    self.chose_num = chose_num
+    if self.chose_label then
+        self.chose_label:setString(string.format("Đã chọn: %d/%d", self.chose_num, self.max_num))
+    end
+
+    if self.item_scrollview then
+        self.item_scrollview:resetCurrentItems()
+    end
+end
+
+function ForgeMaterialChoseWindow:_onClickBtnClose()
+    if controller.openForgeMaterialChoseWindow then
+        controller:openForgeMaterialChoseWindow(false)
+    else
+        self:close()
+    end
+end
+
+function ForgeMaterialChoseWindow:_onClickBtnOk()
+    local item_list = {}
+    for _,v in pairs(self.item_data or {}) do
+        if v.showSellStatus ~= nil and v.showSellStatus.select == true then
+            table.insert(item_list, v.id) -- unique_id
+        end
+    end
+
+    GlobalEvent:getInstance():Fire(ForgeHouseEvent.Craft_Material_Chose, item_list)
+    self:_onClickBtnClose()
+end
+
+function ForgeMaterialChoseWindow:openRootWnd(data)
+    self:setData(data or {})
+end
+
+function ForgeMaterialChoseWindow:close_callback()
+    if self.item_scrollview then
+        self.item_scrollview:DeleteMe()
+        self.item_scrollview = nil
+    end
+end

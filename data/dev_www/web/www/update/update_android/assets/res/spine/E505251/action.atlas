@@ -1,0 +1,244 @@
+
+action.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+attack_baodian/attack_baodian_00020
+  rotate: false
+  xy: 458, 1202
+  size: 191, 168
+  orig: 353, 337
+  offset: 80, 87
+  index: -1
+attack_baodian/attack_baodian_00021
+  rotate: true
+  xy: 1210, 1434
+  size: 288, 261
+  orig: 353, 337
+  offset: 30, 45
+  index: -1
+attack_baodian/attack_baodian_00023
+  rotate: false
+  xy: 2, 567
+  size: 344, 308
+  orig: 353, 337
+  offset: 1, 9
+  index: -1
+attack_baodian/attack_baodian_00024
+  rotate: false
+  xy: 2, 877
+  size: 348, 315
+  orig: 353, 337
+  offset: 0, 1
+  index: -1
+attack_baodian/attack_baodian_00026
+  rotate: false
+  xy: 907, 1724
+  size: 344, 318
+  orig: 353, 337
+  offset: 9, 1
+  index: -1
+attack_baodian/attack_baodian_00027
+  rotate: false
+  xy: 1253, 1725
+  size: 324, 317
+  orig: 353, 337
+  offset: 19, 8
+  index: -1
+attack_baodian/attack_baodian_00029
+  rotate: false
+  xy: 2, 243
+  size: 322, 322
+  orig: 353, 337
+  offset: 7, 15
+  index: -1
+attack_baodian/attack_baodian_00030
+  rotate: true
+  xy: 293, 12
+  size: 229, 189
+  orig: 353, 337
+  offset: 80, 65
+  index: -1
+attack_baodian/attack_baodian_00032
+  rotate: false
+  xy: 1746, 1276
+  size: 195, 193
+  orig: 353, 337
+  offset: 80, 64
+  index: -1
+attack_baodian/attack_baodian_00033
+  rotate: true
+  xy: 1852, 1843
+  size: 199, 194
+  orig: 353, 337
+  offset: 79, 64
+  index: -1
+attack_baodian/attack_baodian_00035
+  rotate: false
+  xy: 881, 709
+  size: 190, 195
+  orig: 353, 337
+  offset: 90, 63
+  index: -1
+attack_baodian/attack_baodian_00036
+  rotate: false
+  xy: 1042, 300
+  size: 189, 197
+  orig: 353, 337
+  offset: 91, 63
+  index: -1
+attack_baodian2/attack_baodian2_00020
+  rotate: false
+  xy: 756, 1493
+  size: 111, 158
+  orig: 510, 500
+  offset: 201, 178
+  index: -1
+attack_baodian2/attack_baodian2_00022
+  rotate: false
+  xy: 2, 2
+  size: 289, 239
+  orig: 510, 500
+  offset: 115, 140
+  index: -1
+attack_baodian2/attack_baodian2_00023
+  rotate: false
+  xy: 460, 1653
+  size: 445, 389
+  orig: 510, 500
+  offset: 37, 47
+  index: -1
+attack_baodian2/attack_baodian2_00025
+  rotate: false
+  xy: 2, 1194
+  size: 454, 419
+  orig: 510, 500
+  offset: 34, 42
+  index: -1
+attack_baodian2/attack_baodian2_00026
+  rotate: false
+  xy: 2, 1615
+  size: 456, 427
+  orig: 510, 500
+  offset: 33, 40
+  index: -1
+attack_baodian2/attack_baodian2_00028
+  rotate: true
+  xy: 460, 1372
+  size: 279, 294
+  orig: 510, 500
+  offset: 111, 112
+  index: -1
+attack_baodian2/attack_baodian2_00029
+  rotate: true
+  xy: 907, 1449
+  size: 273, 301
+  orig: 510, 500
+  offset: 109, 109
+  index: -1
+attack_baodian2/attack_baodian2_00031
+  rotate: false
+  xy: 1579, 1732
+  size: 271, 310
+  orig: 510, 500
+  offset: 115, 105
+  index: -1
+attack_baodian2/attack_baodian2_00032
+  rotate: false
+  xy: 352, 880
+  size: 266, 312
+  orig: 510, 500
+  offset: 121, 103
+  index: -1
+attack_baodian2/attack_baodian2_00034
+  rotate: false
+  xy: 1473, 1431
+  size: 271, 292
+  orig: 510, 500
+  offset: 118, 100
+  index: -1
+attack_baodian2/attack_baodian2_00035
+  rotate: false
+  xy: 620, 906
+  size: 274, 294
+  orig: 510, 500
+  offset: 116, 99
+  index: -1
+attack_huo/attack_huo_00012
+  rotate: false
+  xy: 806, 499
+  size: 248, 201
+  orig: 260, 208
+  offset: 12, 0
+  index: -1
+attack_huo/attack_huo_00013
+  rotate: false
+  xy: 996, 97
+  size: 248, 201
+  orig: 260, 208
+  offset: 12, 0
+  index: -1
+attack_huo/attack_huo_00014
+  rotate: false
+  xy: 742, 100
+  size: 252, 198
+  orig: 260, 208
+  offset: 8, 2
+  index: -1
+attack_huo/attack_huo_00015
+  rotate: false
+  xy: 547, 502
+  size: 257, 198
+  orig: 260, 208
+  offset: 3, 3
+  index: -1
+attack_huo/attack_huo_00016
+  rotate: false
+  xy: 525, 301
+  size: 257, 199
+  orig: 260, 208
+  offset: 2, 4
+  index: -1
+attack_huo/attack_huo_00017
+  rotate: true
+  xy: 1746, 1471
+  size: 259, 203
+  orig: 260, 208
+  offset: 0, 5
+  index: -1
+attack_huo/attack_huo_00018
+  rotate: false
+  xy: 620, 702
+  size: 259, 202
+  orig: 260, 208
+  offset: 0, 5
+  index: -1
+attack_huo/attack_huo_00019
+  rotate: true
+  xy: 326, 306
+  size: 259, 197
+  orig: 260, 208
+  offset: 0, 4
+  index: -1
+attack_huo/attack_huo_00020
+  rotate: false
+  xy: 484, 102
+  size: 256, 197
+  orig: 260, 208
+  offset: 3, 4
+  index: -1
+attack_huo/attack_huo_00021
+  rotate: true
+  xy: 348, 617
+  size: 258, 197
+  orig: 260, 208
+  offset: 1, 4
+  index: -1
+attack_huo/attack_huo_00022
+  rotate: false
+  xy: 784, 300
+  size: 256, 197
+  orig: 260, 208
+  offset: 3, 4
+  index: -1

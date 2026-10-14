@@ -1,0 +1,431 @@
+﻿GameNet = GameNet or BaseClass()
+
+function GameNet.__init(arg_1_0)
+	if GameNet.Instance ~= nil then
+		error("[GameNet] accempt to create singleton twice!")
+
+		return
+	end
+
+	GameNet.Instance = arg_1_0
+	arg_1_0.net_manager = cc.SmartSocket:getInstance()
+
+	arg_1_0.net_manager:Start()
+
+	if not ProtoMgr then
+		require("sys.net.proto_mgr")
+	end
+
+	if not GlobalTimeTicket then
+		require("sys.global_time_ticket")
+	end
+
+	arg_1_0.proto_mgr = ProtoMgr:getInstance()
+	arg_1_0.timer = GlobalTimeTicket:getInstance()
+	arg_1_0.is_server_disconnet = false
+	arg_1_0.is_server_info_set = false
+	arg_1_0.is_server_connected = false
+	arg_1_0.is_client_disconnet = false
+	arg_1_0.tryconnect_num = 0
+	arg_1_0.game_net_id = -1
+	arg_1_0.timeout = 3000
+	arg_1_0.time_diff = 0
+
+	if not List then
+		require("util.list")
+	end
+
+	arg_1_0.msg_list = List.New()
+	arg_1_0.check_time = 0
+	arg_1_0.re_connest_time = 0
+
+	arg_1_0:initSchedule()
+	arg_1_0:registerProtocals()
+
+	arg_1_0.send_cmd_idx = 0
+	arg_1_0.local_srv_diff_time = 0
+end
+
+function GameNet.getInstance(arg_2_0)
+	if GameNet.Instance == nil then
+		GameNet.New()
+	end
+
+	return GameNet.Instance
+end
+
+function GameNet.initSchedule(arg_3_0)
+	arg_3_0.schedule_id = arg_3_0.timer:add(function()
+		if cc.Director:getInstance():getDeltaTime() == 0 then
+			return
+		end
+
+		arg_3_0.net_manager:Update()
+
+		if not arg_3_0.is_server_connected then
+			return
+		end
+
+		arg_3_0.last_heartbeat_time = arg_3_0.last_heartbeat_time + 1
+
+		if arg_3_0.last_heartbeat_time >= 600 then
+			arg_3_0:request1199()
+
+			arg_3_0.last_heartbeat_time = 0
+		end
+
+		for iter_4_0 = 1, 5 do
+			if not arg_3_0:doOneMsg() then
+				break
+			end
+		end
+	end, 1 / display.DEFAULT_FPS)
+end
+
+function GameNet.registerProtocals(arg_5_0)
+	arg_5_0.proto_mgr:RegisterCmdCallback(1044, "on1044", arg_5_0)
+	arg_5_0.proto_mgr:RegisterCmdCallback(1098, "on1098", arg_5_0)
+	arg_5_0.proto_mgr:RegisterCmdCallback(1196, "on1196", arg_5_0)
+	arg_5_0.proto_mgr:RegisterCmdCallback(1199, "on1199", arg_5_0)
+end
+
+function GameNet.on1044(arg_6_0, arg_6_1)
+	arg_6_0:setTime(arg_6_1.time)
+end
+
+function GameNet.on1196(arg_7_0, arg_7_1)
+	arg_7_0.local_srv_diff_time = arg_7_1.time - os.time({
+		hour = 0,
+		month = 1,
+		year = 2019,
+		min = 0,
+		sec = 0,
+		day = 1
+	})
+end
+
+function GameNet.on1098(arg_8_0, arg_8_1)
+	arg_8_0:setTime(arg_8_1.srv_time)
+end
+
+function GameNet.SetServerInfo(arg_9_0, arg_9_1, arg_9_2)
+	arg_9_0.is_server_info_set = true
+	arg_9_0.server_host_name = arg_9_1
+	arg_9_0.server_host_port = arg_9_2
+end
+
+function GameNet.Connect(arg_10_0, arg_10_1, arg_10_2)
+	if arg_10_0.is_server_connected or arg_10_0.in_async_connect then
+		return
+	end
+
+	if not arg_10_0.is_server_info_set then
+		return false
+	end
+
+	if arg_10_1 then
+		arg_10_0.timeout = arg_10_1
+	end
+
+	if arg_10_2 then
+		arg_10_0.tryconnect_num = arg_10_2
+	end
+
+	local var_10_0 = arg_10_0.net_manager:ConnectAsyn(arg_10_0.server_host_name, arg_10_0.server_host_port, arg_10_0.timeout)
+
+	if var_10_0 == -1 then
+		return false
+	end
+
+	arg_10_0.game_net_id = var_10_0
+	arg_10_0.in_async_connect = true
+
+	local function var_10_1()
+		if not arg_10_0:IsServerConnect() then
+			arg_10_0:DisconnectServer(false)
+			arg_10_0:tryReconnect()
+		end
+	end
+
+	arg_10_0.connet_timer_id = arg_10_0.timer:add(var_10_1, RECONNEST_INTERVAL or 5, 1)
+
+	return true
+end
+
+function GameNet.SendPrev(arg_12_0, arg_12_1)
+	if SEND_CMD_CHECK == false then
+		return
+	end
+
+	if arg_12_1 == 10300 or arg_12_1 == 16601 or arg_12_1 == 16602 or arg_12_1 == 16603 then
+		return
+	end
+
+	local var_12_0 = math.floor(arg_12_1 / 100)
+
+	if var_12_0 == 111 or var_12_0 == 200 then
+		return
+	end
+
+	arg_12_0.send_cmd_idx = arg_12_0.send_cmd_idx + 1
+
+	local var_12_1 = arg_12_0.send_cmd_idx
+	local var_12_2 = arg_12_0:getTime()
+	local var_12_3 = "__sszg666__" or CMD_KEY
+	local var_12_4 = cc.CCGameLib:getInstance():md5str(table.concat({
+		var_12_1,
+		var_12_2,
+		arg_12_1,
+		var_12_3
+	}, ""))
+	local var_12_5 = {
+		idx = var_12_1,
+		time = var_12_2,
+		code = arg_12_1 + (var_12_1 + 5) % 16,
+		sign = var_12_4
+	}
+
+	arg_12_0.net_manager:Send(arg_12_0.game_net_id, 1197, var_12_5)
+end
+
+function GameNet.Send(arg_13_0, arg_13_1, arg_13_2, arg_13_3, arg_13_4)
+	if not arg_13_0.is_server_connected then
+		if arg_13_4 then
+			arg_13_4()
+		end
+
+		return false
+	end
+
+	arg_13_0:SendPrev(arg_13_1)
+
+	local var_13_0 = arg_13_0.net_manager:Send(arg_13_0.game_net_id, arg_13_1, arg_13_2)
+
+	if var_13_0 then
+		if arg_13_3 and arg_13_4 then
+			arg_13_0.timer:add(arg_13_4, arg_13_3, 1, "send_timeout_" .. arg_13_1)
+		end
+	elseif arg_13_4 then
+		arg_13_4()
+	end
+
+	return var_13_0
+end
+
+function GameNet.Recv(arg_14_0, arg_14_1, arg_14_2, arg_14_3)
+	if arg_14_0.game_net_id ~= arg_14_2 then
+		return
+	end
+
+	if not arg_14_0.proto_mgr:hasReg(arg_14_1) then
+		return
+	end
+
+	local var_14_0, var_14_1 = arg_14_0.net_manager:GetRecv(arg_14_1)
+
+	if var_14_1 and var_14_0 then
+		List.PushBack(arg_14_0.msg_list, {
+			arg_14_1,
+			var_14_0
+		})
+
+		arg_14_0.check_time = 0
+	else
+		sendErrorToSrv(string.format("协议[%s]读取出错", arg_14_1))
+	end
+end
+
+function GameNet.doOneMsg(arg_15_0)
+	if not List.Empty(arg_15_0.msg_list) then
+		local var_15_0 = List.PopFront(arg_15_0.msg_list)
+
+		arg_15_0.proto_mgr:cmd_callback(var_15_0[1], var_15_0[2])
+
+		return true
+	else
+		return false
+	end
+end
+
+function GameNet.tryReconnect(arg_16_0, arg_16_1)
+	if arg_16_0.in_async_connect then
+		return
+	end
+
+	if arg_16_1 then
+		arg_16_0.tryconnect_num = arg_16_1
+	end
+
+	if arg_16_0.tryconnect_num > 0 then
+		arg_16_0:Connect()
+
+		arg_16_0.tryconnect_num = arg_16_0.tryconnect_num - 1
+	elseif arg_16_0.tryconnect_num == 0 then
+		GlobalTimeTicket:getInstance():remove("LOGIN_REQUEST_tiket")
+
+		if LoginController ~= nil then
+			LoginController:getInstance():openReconnect(false)
+		end
+
+		if arg_16_0.connect_alert == nil then
+			arg_16_0.connect_alert = CommonAlert.show(TI18N("语言_c_4147"), TI18N("语言_c_63"), function()
+				if LoginController ~= nil then
+					LoginController:getInstance():openReconnect(true)
+				end
+
+				arg_16_0:Connect(nil, 3)
+
+				arg_16_0.connect_alert = nil
+			end, TI18N("语言_c_62"), function()
+				sdkOnExit()
+
+				arg_16_0.connect_alert = nil
+			end, nil, nil, {
+				view_tag = ViewMgrTag.RECONNECT_TAG
+			})
+		end
+	end
+end
+
+function GameNet.Connected(arg_19_0, arg_19_1, arg_19_2)
+	if arg_19_0.game_net_id ~= arg_19_2 then
+		return
+	end
+
+	GlobalTimeTicket:getInstance():remove("LOGIN_REQUEST_tiket")
+
+	arg_19_0.game_net_id = arg_19_2
+	arg_19_0.in_async_connect = false
+	arg_19_0.is_server_connected = true
+	arg_19_0.last_heartbeat_time = 0
+	arg_19_0.tryconnect_num = 3
+	arg_19_0.re_connest_time = 0
+	arg_19_0.is_server_disconnet = false
+	arg_19_0.is_client_disconnet = false
+	arg_19_0.send_cmd_idx = 0
+
+	GlobalEvent:getInstance():Fire(EventId.CONNECTED)
+
+	if arg_19_0.connect_alert ~= nil then
+		arg_19_0.connect_alert:close()
+
+		arg_19_0.connect_alert = nil
+	end
+end
+
+function GameNet.setTime(arg_20_0, arg_20_1)
+	arg_20_0.time_diff = arg_20_1 - os.time()
+end
+
+function GameNet.tryNum(arg_21_0)
+	arg_21_0.re_connest_time = arg_21_0.re_connest_time + 1
+
+	return arg_21_0.re_connest_time
+end
+
+function GameNet.getTime(arg_22_0)
+	return os.time() + arg_22_0.time_diff
+end
+
+function GameNet.getSrvLocalTime(arg_23_0)
+	return os.time() + arg_23_0.time_diff - arg_23_0.local_srv_diff_time
+end
+
+function GameNet.toSrvLocalTime(arg_24_0, arg_24_1)
+	return arg_24_1 - arg_24_0.local_srv_diff_time
+end
+
+function GameNet.getTimeFloat(arg_25_0)
+	return os.clock()
+end
+
+function GameNet.IsServerConnect(arg_26_0)
+	return arg_26_0.is_server_connected
+end
+
+function GameNet.IsConnecting(arg_27_0)
+	return arg_27_0.in_async_connect
+end
+
+function GameNet.Disconnect(arg_28_0, arg_28_1)
+	List.clean(arg_28_0.msg_list)
+
+	if arg_28_1 ~= arg_28_0.game_net_id then
+		return
+	end
+
+	arg_28_0.timer:remove(arg_28_0.connet_timer_id)
+
+	arg_28_0.is_server_connected = false
+	arg_28_0.in_async_connect = false
+	arg_28_0.game_net_id = -1
+
+	GlobalEvent:getInstance():Fire(EventId.DISCONNECT, true)
+end
+
+function GameNet.DisconnectServer(arg_29_0, arg_29_1)
+	arg_29_0.timer:remove(arg_29_0.connet_timer_id)
+
+	if arg_29_0.game_net_id ~= -1 then
+		arg_29_0.net_manager:Disconnect(arg_29_0.game_net_id)
+	end
+
+	arg_29_0.is_server_connected = false
+	arg_29_0.in_async_connect = false
+	arg_29_0.is_client_disconnet = arg_29_1
+end
+
+function GameNet.DisconnectByClient(arg_30_0, arg_30_1, arg_30_2)
+	if arg_30_2 == nil then
+		arg_30_2 = true
+	end
+
+	arg_30_0:DisconnectServer(arg_30_2)
+	arg_30_0:setServerDisconnect(arg_30_1)
+end
+
+function GameNet.__delete(arg_31_0)
+	arg_31_0.timer:remove(arg_31_0.connet_timer_id)
+	arg_31_0.timer:remove(arg_31_0.schedule_id)
+	arg_31_0:DisconnectServer(true)
+	arg_31_0.net_manager:Stop()
+	arg_31_0.net_manager:DeleteMe()
+
+	arg_31_0.net_manager = nil
+end
+
+function GameNet.isServerDisconnet(arg_32_0)
+	return arg_32_0.is_server_disconnet
+end
+
+function GameNet.setServerDisconnect(arg_33_0, arg_33_1)
+	arg_33_0.is_server_disconnet = arg_33_1
+end
+
+function GameNet.isClientDisconnet(arg_34_0)
+	return arg_34_0.is_client_disconnet
+end
+
+function GameNet.getGameNetid(arg_35_0)
+	return arg_35_0.game_net_id
+end
+
+function GameNet.request1199(arg_36_0)
+	if arg_36_0.is_server_disconnet == true then
+		return
+	end
+
+	arg_36_0.check_time = arg_36_0.check_time + 1
+
+	if arg_36_0.check_time > 1 then
+		arg_36_0:DisconnectByClient(false, false)
+
+		arg_36_0.check_time = 0
+	else
+		arg_36_0:Send(1199, {})
+	end
+end
+
+function GameNet.on1199(arg_37_0, arg_37_1)
+	arg_37_0:setTime(arg_37_1.time)
+end

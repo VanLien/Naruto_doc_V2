@@ -1,0 +1,265 @@
+
+luohunzhen.png
+size: 2017,1622
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+3
+  rotate: false
+  xy: 2, 925
+  size: 707, 695
+  orig: 855, 759
+  offset: 74, 50
+  index: -1
+xx_1
+  rotate: false
+  xy: 1986, 543
+  size: 29, 33
+  orig: 56, 293
+  offset: 23, 1
+  index: -1
+xx_10
+  rotate: false
+  xy: 1932, 317
+  size: 52, 259
+  orig: 56, 293
+  offset: 2, 28
+  index: -1
+xx_11
+  rotate: true
+  xy: 1406, 142
+  size: 52, 235
+  orig: 56, 293
+  offset: 2, 52
+  index: -1
+xx_12
+  rotate: true
+  xy: 1114, 89
+  size: 52, 209
+  orig: 56, 293
+  offset: 2, 78
+  index: -1
+xx_13
+  rotate: false
+  xy: 1932, 133
+  size: 50, 182
+  orig: 56, 293
+  offset: 4, 106
+  index: -1
+xx_14
+  rotate: true
+  xy: 1325, 94
+  size: 46, 155
+  orig: 56, 293
+  offset: 8, 133
+  index: -1
+xx_15
+  rotate: true
+  xy: 1325, 52
+  size: 40, 128
+  orig: 56, 293
+  offset: 15, 160
+  index: -1
+xx_16
+  rotate: false
+  xy: 1984, 211
+  size: 31, 104
+  orig: 56, 293
+  offset: 24, 184
+  index: -1
+xx_17
+  rotate: false
+  xy: 1474, 673
+  size: 24, 81
+  orig: 56, 293
+  offset: 32, 209
+  index: -1
+xx_18
+  rotate: true
+  xy: 832, 13
+  size: 23, 56
+  orig: 56, 293
+  offset: 32, 235
+  index: -1
+xx_19
+  rotate: true
+  xy: 1984, 188
+  size: 21, 31
+  orig: 56, 293
+  offset: 31, 261
+  index: -1
+xx_2
+  rotate: true
+  xy: 1455, 51
+  size: 40, 60
+  orig: 56, 293
+  offset: 10, 3
+  index: -1
+xx_3
+  rotate: true
+  xy: 1800, 102
+  size: 45, 92
+  orig: 56, 293
+  offset: 4, 4
+  index: -1
+xx_4
+  rotate: true
+  xy: 1482, 93
+  size: 47, 123
+  orig: 56, 293
+  offset: 2, 5
+  index: -1
+xx_5
+  rotate: true
+  xy: 1643, 100
+  size: 47, 155
+  orig: 56, 293
+  offset: 1, 5
+  index: -1
+xx_6
+  rotate: true
+  xy: 1114, 41
+  size: 46, 185
+  orig: 56, 293
+  offset: 1, 7
+  index: -1
+xx_7
+  rotate: true
+  xy: 1643, 149
+  size: 45, 216
+  orig: 56, 293
+  offset: 1, 7
+  index: -1
+xx_8
+  rotate: true
+  xy: 1158, 143
+  size: 51, 246
+  orig: 56, 293
+  offset: 1, 8
+  index: -1
+xx_9
+  rotate: true
+  xy: 1158, 196
+  size: 53, 280
+  orig: 56, 293
+  offset: 1, 7
+  index: -1
+zg_0
+  rotate: true
+  xy: 711, 931
+  size: 249, 97
+  orig: 673, 597
+  offset: 288, 466
+  index: -1
+zg_1
+  rotate: false
+  xy: 832, 38
+  size: 280, 127
+  orig: 673, 597
+  offset: 264, 436
+  index: -1
+zg_10
+  rotate: true
+  xy: 492, 422
+  size: 501, 323
+  orig: 673, 597
+  offset: 83, 67
+  index: -1
+zg_11
+  rotate: true
+  xy: 832, 167
+  size: 503, 324
+  orig: 673, 597
+  offset: 81, 68
+  index: -1
+zg_12
+  rotate: true
+  xy: 817, 672
+  size: 508, 322
+  orig: 673, 597
+  offset: 81, 70
+  index: -1
+zg_13
+  rotate: true
+  xy: 1158, 251
+  size: 503, 314
+  orig: 673, 597
+  offset: 87, 77
+  index: -1
+zg_14
+  rotate: false
+  xy: 1513, 578
+  size: 495, 301
+  orig: 673, 597
+  offset: 89, 86
+  index: -1
+zg_15
+  rotate: true
+  xy: 1899, 176
+  size: 400, 31
+  orig: 673, 597
+  offset: 138, 247
+  index: -1
+zg_2
+  rotate: true
+  xy: 423, 12
+  size: 408, 407
+  orig: 673, 597
+  offset: 138, 155
+  index: -1
+zg_3
+  rotate: false
+  xy: 1576, 1218
+  size: 418, 402
+  orig: 673, 597
+  offset: 133, 153
+  index: -1
+zg_4
+  rotate: false
+  xy: 1474, 196
+  size: 423, 380
+  orig: 673, 597
+  offset: 127, 153
+  index: -1
+zg_5
+  rotate: false
+  xy: 711, 1182
+  size: 422, 438
+  orig: 673, 597
+  offset: 122, 69
+  index: -1
+zg_6
+  rotate: true
+  xy: 2, 2
+  size: 431, 419
+  orig: 673, 597
+  offset: 117, 68
+  index: -1
+zg_7
+  rotate: false
+  xy: 1135, 1219
+  size: 439, 401
+  orig: 673, 597
+  offset: 112, 67
+  index: -1
+zg_8
+  rotate: true
+  xy: 1141, 756
+  size: 461, 370
+  orig: 673, 597
+  offset: 96, 67
+  index: -1
+zg_9
+  rotate: false
+  xy: 1513, 881
+  size: 478, 335
+  orig: 673, 597
+  offset: 89, 67
+  index: -1
+落魂阵
+  rotate: false
+  xy: 2, 435
+  size: 488, 488
+  orig: 488, 488
+  offset: 0, 0
+  index: -1

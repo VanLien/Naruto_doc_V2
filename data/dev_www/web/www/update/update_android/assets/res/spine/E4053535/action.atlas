@@ -1,0 +1,68 @@
+
+action.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/action5_foxHIT_2/0_00014
+  rotate: false
+  xy: 2, 1164
+  size: 1183, 768
+  orig: 2000, 1500
+  offset: 637, 450
+  index: -1
+images/action5_foxHIT_2/0_00015
+  rotate: true
+  xy: 1187, 888
+  size: 1044, 858
+  orig: 2000, 1500
+  offset: 714, 374
+  index: -1
+images/action5_foxHIT_2/0_00017
+  rotate: false
+  xy: 899, 2
+  size: 1084, 884
+  orig: 2000, 1500
+  offset: 699, 393
+  index: -1
+images/action5_foxHIT_2/0_00018
+  rotate: true
+  xy: 2, 56
+  size: 1106, 895
+  orig: 2000, 1500
+  offset: 700, 386
+  index: -1
+
+action2.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/action5_foxHIT_2/0_00016
+  rotate: false
+  xy: 2, 993
+  size: 1054, 882
+  orig: 2000, 1500
+  offset: 709, 386
+  index: -1
+images/action5_foxHIT_2/0_00019
+  rotate: false
+  xy: 2, 140
+  size: 978, 851
+  orig: 2000, 1500
+  offset: 711, 427
+  index: -1
+images/action5_foxHIT_2/0_00020
+  rotate: false
+  xy: 1058, 1081
+  size: 964, 794
+  orig: 2000, 1500
+  offset: 707, 514
+  index: -1
+images/action5_foxHIT_2/0_00021
+  rotate: true
+  xy: 982, 2
+  size: 989, 716
+  orig: 2000, 1500
+  offset: 684, 531
+  index: -1

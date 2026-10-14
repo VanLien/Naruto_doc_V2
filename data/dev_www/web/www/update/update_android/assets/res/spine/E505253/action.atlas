@@ -1,0 +1,146 @@
+
+action.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+E505253/he_00000
+  rotate: false
+  xy: 679, 30
+  size: 130, 169
+  orig: 2500, 2500
+  offset: 1496, 1099
+  index: -1
+E505253/he_00001
+  rotate: true
+  xy: 1729, 26
+  size: 137, 171
+  orig: 2500, 2500
+  offset: 1478, 1102
+  index: -1
+E505253/he_00002
+  rotate: false
+  xy: 1892, 486
+  size: 131, 171
+  orig: 2500, 2500
+  offset: 1473, 1105
+  index: -1
+E505253/he_00003
+  rotate: false
+  xy: 1409, 639
+  size: 157, 190
+  orig: 2500, 2500
+  offset: 1455, 1089
+  index: -1
+E505253/he_00004
+  rotate: true
+  xy: 1729, 165
+  size: 195, 192
+  orig: 2500, 2500
+  offset: 1426, 1089
+  index: -1
+E505253/he_00005
+  rotate: false
+  xy: 386, 2
+  size: 291, 197
+  orig: 2500, 2500
+  offset: 1339, 1087
+  index: -1
+E505253/he_00006
+  rotate: false
+  xy: 2, 18
+  size: 382, 172
+  orig: 2500, 2500
+  offset: 1252, 1085
+  index: -1
+E505253/he_00007
+  rotate: false
+  xy: 1113, 831
+  size: 471, 164
+  orig: 2500, 2500
+  offset: 1165, 1087
+  index: -1
+E505253/he_00008
+  rotate: false
+  xy: 438, 594
+  size: 504, 151
+  orig: 2500, 2500
+  offset: 1080, 1107
+  index: -1
+E505253/he_00009
+  rotate: false
+  xy: 438, 747
+  size: 586, 123
+  orig: 2500, 2500
+  offset: 993, 1125
+  index: -1
+E505253/he_00010
+  rotate: false
+  xy: 438, 872
+  size: 673, 123
+  orig: 2500, 2500
+  offset: 906, 1118
+  index: -1
+action1_1/2/2_00019
+  rotate: false
+  xy: 384, 201
+  size: 360, 391
+  orig: 2500, 2500
+  offset: 1291, 824
+  index: -1
+action1_1/2/2_00021
+  rotate: false
+  xy: 2, 596
+  size: 434, 399
+  orig: 2500, 2500
+  offset: 1246, 805
+  index: -1
+action1_1/2/2_00023
+  rotate: false
+  xy: 2, 192
+  size: 380, 402
+  orig: 2500, 2500
+  offset: 1255, 805
+  index: -1
+action1_1/2/2_00025
+  rotate: false
+  xy: 746, 208
+  size: 332, 384
+  orig: 2500, 2500
+  offset: 1302, 804
+  index: -1
+action1_1/2/2_00027
+  rotate: true
+  xy: 1586, 659
+  size: 336, 383
+  orig: 2500, 2500
+  offset: 1300, 804
+  index: -1
+action1_1/2/2_00029
+  rotate: false
+  xy: 1080, 484
+  size: 327, 345
+  orig: 2500, 2500
+  offset: 1310, 841
+  index: -1
+action1_1/2/2_00031
+  rotate: true
+  xy: 1418, 55
+  size: 305, 309
+  orig: 2500, 2500
+  offset: 1309, 880
+  index: -1
+action1_1/2/2_00033
+  rotate: true
+  xy: 1568, 362
+  size: 295, 322
+  orig: 2500, 2500
+  offset: 1311, 878
+  index: -1
+action1_1/2/2_00035
+  rotate: true
+  xy: 1080, 195
+  size: 287, 336
+  orig: 2500, 2500
+  offset: 1320, 876
+  index: -1

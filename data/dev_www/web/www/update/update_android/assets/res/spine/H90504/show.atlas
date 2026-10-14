@@ -1,0 +1,139 @@
+
+show.png
+size: 2028,629
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+0001
+  rotate: true
+  xy: 1236, 4
+  size: 265, 306
+  orig: 640, 640
+  offset: 189, 153
+  index: -1
+0002
+  rotate: false
+  xy: 1490, 324
+  size: 279, 304
+  orig: 640, 640
+  offset: 184, 150
+  index: -1
+0003
+  rotate: false
+  xy: 1241, 307
+  size: 248, 321
+  orig: 640, 640
+  offset: 197, 151
+  index: -1
+0004
+  rotate: false
+  xy: 996, 270
+  size: 244, 358
+  orig: 640, 640
+  offset: 202, 146
+  index: -1
+10000
+  rotate: false
+  xy: 165, 200
+  size: 167, 428
+  orig: 461, 461
+  offset: 149, 5
+  index: -1
+10001
+  rotate: false
+  xy: 333, 200
+  size: 166, 428
+  orig: 461, 461
+  offset: 150, 5
+  index: -1
+10002
+  rotate: false
+  xy: 500, 200
+  size: 165, 428
+  orig: 461, 461
+  offset: 150, 5
+  index: -1
+10003
+  rotate: false
+  xy: 1, 199
+  size: 163, 429
+  orig: 461, 461
+  offset: 151, 5
+  index: -1
+10004
+  rotate: false
+  xy: 666, 200
+  size: 164, 428
+  orig: 461, 461
+  offset: 150, 5
+  index: -1
+10005
+  rotate: false
+  xy: 831, 200
+  size: 164, 428
+  orig: 461, 461
+  offset: 150, 5
+  index: -1
+sdian (1)
+  rotate: true
+  xy: 502, 3
+  size: 196, 229
+  orig: 300, 300
+  offset: 33, 41
+  index: -1
+sdian (2)
+  rotate: true
+  xy: 1543, 119
+  size: 204, 221
+  orig: 300, 300
+  offset: 18, 40
+  index: -1
+sdian (3)
+  rotate: false
+  xy: 1770, 423
+  size: 257, 205
+  orig: 300, 300
+  offset: 12, 49
+  index: -1
+sdian (4)
+  rotate: false
+  xy: 732, 8
+  size: 258, 191
+  orig: 300, 300
+  offset: 13, 52
+  index: -1
+sdian (5)
+  rotate: false
+  xy: 991, 23
+  size: 244, 176
+  orig: 300, 300
+  offset: 27, 56
+  index: -1
+sdian (6)
+  rotate: false
+  xy: 1, 2
+  size: 249, 196
+  orig: 300, 300
+  offset: 27, 65
+  index: -1
+sdian (7)
+  rotate: false
+  xy: 251, 1
+  size: 250, 198
+  orig: 300, 300
+  offset: 16, 59
+  index: -1
+sdian (8)
+  rotate: false
+  xy: 1765, 15
+  size: 219, 201
+  orig: 300, 300
+  offset: 26, 55
+  index: -1
+sdian (9)
+  rotate: true
+  xy: 1770, 217
+  size: 205, 222
+  orig: 300, 300
+  offset: 33, 32
+  index: -1

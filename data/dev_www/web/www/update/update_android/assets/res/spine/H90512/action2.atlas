@@ -1,0 +1,146 @@
+
+action2.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+action1/js_00000
+  rotate: false
+  xy: 378, 280
+  size: 70, 182
+  orig: 2500, 2500
+  offset: 1084, 957
+  index: -1
+action1/js_00001
+  rotate: false
+  xy: 1869, 1875
+  size: 106, 171
+  orig: 2500, 2500
+  offset: 1080, 957
+  index: -1
+action1/js_00002
+  rotate: false
+  xy: 966, 836
+  size: 346, 228
+  orig: 2500, 2500
+  offset: 959, 877
+  index: -1
+action1/js_00003
+  rotate: false
+  xy: 966, 1066
+  size: 412, 239
+  orig: 2500, 2500
+  offset: 926, 858
+  index: -1
+action1/js_00004
+  rotate: false
+  xy: 484, 943
+  size: 480, 322
+  orig: 2500, 2500
+  offset: 892, 839
+  index: -1
+action1/js_00005
+  rotate: false
+  xy: 484, 1267
+  size: 480, 384
+  orig: 2500, 2500
+  offset: 892, 839
+  index: -1
+action1/js_00006
+  rotate: false
+  xy: 484, 1653
+  size: 480, 393
+  orig: 2500, 2500
+  offset: 892, 839
+  index: -1
+action1/js_00007
+  rotate: false
+  xy: 2, 856
+  size: 480, 393
+  orig: 2500, 2500
+  offset: 892, 839
+  index: -1
+action1/js_00008
+  rotate: false
+  xy: 2, 1251
+  size: 480, 395
+  orig: 2500, 2500
+  offset: 892, 839
+  index: -1
+action1/js_00009
+  rotate: false
+  xy: 2, 1648
+  size: 480, 398
+  orig: 2500, 2500
+  offset: 892, 839
+  index: -1
+action1/js_00010
+  rotate: false
+  xy: 966, 1656
+  size: 466, 390
+  orig: 2500, 2500
+  offset: 899, 843
+  index: -1
+action1/js_00011
+  rotate: false
+  xy: 2, 464
+  size: 466, 390
+  orig: 2500, 2500
+  offset: 899, 843
+  index: -1
+action1/js_00012
+  rotate: true
+  xy: 2, 2
+  size: 460, 374
+  orig: 2500, 2500
+  offset: 902, 847
+  index: -1
+action1/js_00013
+  rotate: false
+  xy: 966, 1307
+  size: 447, 347
+  orig: 2500, 2500
+  offset: 908, 851
+  index: -1
+action1/js_00014
+  rotate: false
+  xy: 1434, 1810
+  size: 433, 236
+  orig: 2500, 2500
+  offset: 908, 933
+  index: -1
+action1/js_00015
+  rotate: false
+  xy: 1434, 1643
+  size: 438, 165
+  orig: 2500, 2500
+  offset: 906, 933
+  index: -1
+action1/js_00016
+  rotate: false
+  xy: 1415, 1490
+  size: 438, 151
+  orig: 2500, 2500
+  offset: 906, 947
+  index: -1
+action1/js_00017
+  rotate: false
+  xy: 1415, 1350
+  size: 434, 138
+  orig: 2500, 2500
+  offset: 907, 952
+  index: -1
+action1/js_00018
+  rotate: false
+  xy: 1415, 1350
+  size: 434, 138
+  orig: 2500, 2500
+  offset: 907, 952
+  index: -1
+action1/js_00019
+  rotate: false
+  xy: 484, 820
+  size: 130, 121
+  orig: 2500, 2500
+  offset: 1065, 956
+  index: -1
